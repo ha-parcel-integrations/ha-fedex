@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Seadista FedEx",
+        "description": "Sisesta oma FedExi arendaja API-võti. Pakke saad seejärel lisada integratsiooni seadetes või teenusega `fedex.track_parcel`.",
+        "data": {
+          "client_id": "FedExi API-võti",
+          "client_secret": "FedExi salavõti"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx lükkas API-võtme tagasi",
+        "description": "FedEx ei aktsepteeri enam salvestatud API-võtit — see võib olla vahetatud või tühistatud. Sisesta uus.",
+        "data": {
+          "client_id": "FedExi API-võti",
+          "client_secret": "FedExi salavõti"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx lükkas selle API-võtme tagasi.",
+      "cannot_connect": "FedExiga ei saanud ühendust. Proovi uuesti."
+    },
+    "abort": {
+      "already_configured": "FedEx on juba seadistatud.",
+      "reauth_successful": "FedExi uuesti autentimine õnnestus."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FedExi valikud",
+        "menu_options": {
+          "parcels": "Saadetised",
+          "settings": "Seaded"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Pakid",
+            "data": {
+              "add": "Lisa pakk",
+              "remove": "Eemalda pakke"
+            },
+            "data_description": {
+              "add": "Sisesta FedExi jälgimiskood, et alustada paki jälgimist. Selle leiad saatmise kinnituselt või kättetoimetamise teatiselt."
+            }
+          },
+          "delivered": {
+            "name": "Kohale toimetatud pakid",
+            "data": {
+              "delivered_filter_type": "Filtreeri",
+              "delivered_filter_amount": "Kogus"
+            },
+            "data_description": {
+              "delivered_filter_type": "Kuva viimase X päeva jooksul kohale toimetatud pakid või piira X uusimaga.",
+              "delivered_filter_amount": "Kuvatavate päevade või pakkide arv."
+            }
+          },
+          "history": {
+            "name": "Pakkide ajalugu",
+            "data": {
+              "include_history": "Kaasa staatuste ajalugu"
+            },
+            "data_description": {
+              "include_history": "Lisab igale pakile ajaloo atribuudi, mis loetleb iga staatuse muutuse (ajatempel, staatus, algne tekst). Vaikimisi väljas."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Saadetised",
+        "data": {
+          "tracking_codes": "Jälgimiskoodid"
+        }
+      },
+      "settings": {
+        "title": "Seaded",
+        "data": {
+          "delivered_filter_type": "Kohaletoimetatud paki: filtreeri",
+          "delivered_filter_amount": "Kohale toimetatud saadetised: kogus",
+          "include_history": "Kaasa oleku ajalugu"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "See ei näi olevat FedExi jälgimiskood.",
+      "already_tracked": "Seda pakki juba jälgitakse."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Päevad",
+        "parcels": "Pakkide arv"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Jälgi pakki",
+      "description": "Alustab paki jälgimist selle FedExi jälgimiskoodi järgi.",
+      "fields": {
+        "tracking_code": {
+          "name": "Jälgimiskood",
+          "description": "FedExi jälgimiskood."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Lõpeta paki jälgimine",
+      "description": "Lõpetab paki jälgimise selle FedExi jälgimiskoodi järgi.",
+      "fields": {
+        "tracking_code": {
+          "name": "Jälgimiskood",
+          "description": "FedExi jälgimiskood, mille jälgimine tuleb lõpetada."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Pakk registreeriti",
+      "parcel_status_changed": "Paki staatus muutus",
+      "parcel_delivered": "Pakk toimetati kohale",
+      "parcel_delivery_time_changed": "Paki oodatav tarneaeg muutus"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Värskenda"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Tarned"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Saabuvad pakid",
+        "unit_of_measurement": "pakki"
+      },
+      "next_delivery": {
+        "name": "Järgmine tarne"
+      },
+      "awaiting_pickup": {
+        "name": "Väljastuspunktis ootamas",
+        "unit_of_measurement": "pakki"
+      },
+      "delivered_parcels": {
+        "name": "Kohale toimetatud pakid",
+        "unit_of_measurement": "pakki"
+      },
+      "last_update": {
+        "name": "Viimane õnnestunud värskendus"
+      },
+      "parcel": {
+        "name": "Pakk {barcode}"
+      }
+    }
+  }
+}

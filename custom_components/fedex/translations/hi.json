@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "FedEx सेट अप करें",
+        "description": "अपनी स्वयं की FedEx डेवलपर API कुंजी दर्ज करें। इसके बाद पार्सल एकीकरण विकल्पों या `fedex.track_parcel` सेवा से जोड़ें।",
+        "data": {
+          "client_id": "FedEx API कुंजी",
+          "client_secret": "FedEx गुप्त कुंजी"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx ने API कुंजी अस्वीकार कर दी",
+        "description": "FedEx अब सहेजी गई API कुंजी स्वीकार नहीं करता — संभव है कि उसे बदला या रद्द किया गया हो। नई कुंजी दर्ज करें।",
+        "data": {
+          "client_id": "FedEx API कुंजी",
+          "client_secret": "FedEx गुप्त कुंजी"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx ने यह API कुंजी अस्वीकार कर दी।",
+      "cannot_connect": "FedEx से संपर्क नहीं हो सका। कृपया पुनः प्रयास करें।"
+    },
+    "abort": {
+      "already_configured": "FedEx पहले से सेट अप है।",
+      "reauth_successful": "FedEx को सफलतापूर्वक पुनः प्रमाणित किया गया।"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FedEx विकल्प",
+        "menu_options": {
+          "parcels": "पार्सल",
+          "settings": "सेटिंग्स"
+        },
+        "sections": {
+          "parcels": {
+            "name": "पार्सल",
+            "data": {
+              "add": "पार्सल जोड़ें",
+              "remove": "पार्सल हटाएं"
+            },
+            "data_description": {
+              "add": "ट्रैकिंग शुरू करने के लिए FedEx ट्रैकिंग कोड दर्ज करें। यह आपको शिपिंग कन्फर्मेशन या मिस्ड-डिलीवरी कार्ड पर मिलेगा।"
+            }
+          },
+          "delivered": {
+            "name": "डिलीवर किए गए पार्सल",
+            "data": {
+              "delivered_filter_type": "इसके अनुसार फ़िल्टर करें",
+              "delivered_filter_amount": "मात्रा"
+            },
+            "data_description": {
+              "delivered_filter_type": "पिछले X दिनों में डिलीवर हुए पार्सल दिखाएं, या सबसे हाल के X तक सीमित करें।",
+              "delivered_filter_amount": "दिखाने के लिए दिनों या पार्सल की संख्या।"
+            }
+          },
+          "history": {
+            "name": "पार्सल इतिहास",
+            "data": {
+              "include_history": "स्थिति इतिहास शामिल करें"
+            },
+            "data_description": {
+              "include_history": "प्रत्येक पार्सल के लिए एक history एट्रिब्यूट जोड़ें जिसमें हर स्थिति अपडेट (टाइमस्टैंप, स्थिति, मूल टेक्स्ट) सूचीबद्ध हो। डिफ़ॉल्ट रूप से बंद।"
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "पार्सल प्रबंधित करें",
+        "data": {
+          "tracking_codes": "ट्रैकिंग कोड"
+        }
+      },
+      "settings": {
+        "title": "सेटिंग्स",
+        "data": {
+          "delivered_filter_type": "वितरित पार्सल: फ़िल्टर करें",
+          "delivered_filter_amount": "वितरित पार्सल: संख्या",
+          "include_history": "स्थिति इतिहास शामिल करें"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "यह FedEx ट्रैकिंग कोड जैसा नहीं लगता।",
+      "already_tracked": "यह पार्सल पहले से ट्रैक किया जा रहा है।"
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "दिन",
+        "parcels": "पार्सल की संख्या"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "पार्सल ट्रैक करें",
+      "description": "FedEx ट्रैकिंग कोड से किसी पार्सल को ट्रैक करना शुरू करें।",
+      "fields": {
+        "tracking_code": {
+          "name": "ट्रैकिंग कोड",
+          "description": "FedEx ट्रैकिंग कोड।"
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "पार्सल ट्रैक करना बंद करें",
+      "description": "FedEx ट्रैकिंग कोड से किसी पार्सल को ट्रैक करना बंद करें।",
+      "fields": {
+        "tracking_code": {
+          "name": "ट्रैकिंग कोड",
+          "description": "जिस FedEx ट्रैकिंग कोड को ट्रैक करना बंद करना है।"
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "एक पार्सल रजिस्टर किया गया",
+      "parcel_status_changed": "किसी पार्सल की स्थिति बदली",
+      "parcel_delivered": "एक पार्सल डिलीवर हो गया",
+      "parcel_delivery_time_changed": "किसी पार्सल के अनुमानित डिलीवरी समय में बदलाव हुआ"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "रीफ्रेश"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "डिलीवरी"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "आने वाले पार्सल",
+        "unit_of_measurement": "पार्सल"
+      },
+      "next_delivery": {
+        "name": "अगली डिलीवरी"
+      },
+      "awaiting_pickup": {
+        "name": "संग्रह की प्रतीक्षा में",
+        "unit_of_measurement": "पार्सल"
+      },
+      "delivered_parcels": {
+        "name": "डिलीवर किए गए पार्सल",
+        "unit_of_measurement": "पार्सल"
+      },
+      "last_update": {
+        "name": "अंतिम सफल अपडेट"
+      },
+      "parcel": {
+        "name": "पार्सल {barcode}"
+      }
+    }
+  }
+}

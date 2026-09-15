@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "ตั้งค่า FedEx",
+        "description": "ป้อนคีย์ API สำหรับนักพัฒนาของ FedEx ของคุณเอง จากนั้นเพิ่มพัสดุได้ในตัวเลือกของการผสานรวมหรือด้วยบริการ `fedex.track_parcel`",
+        "data": {
+          "client_id": "คีย์ API ของ FedEx",
+          "client_secret": "คีย์ลับของ FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx ปฏิเสธคีย์ API",
+        "description": "FedEx ไม่รับคีย์ API ที่บันทึกไว้อีกต่อไป อาจถูกเปลี่ยนหรือเพิกถอนแล้ว โปรดป้อนคีย์ใหม่",
+        "data": {
+          "client_id": "คีย์ API ของ FedEx",
+          "client_secret": "คีย์ลับของ FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx ปฏิเสธคีย์ API นี้",
+      "cannot_connect": "ไม่สามารถติดต่อ FedEx ได้ โปรดลองอีกครั้ง"
+    },
+    "abort": {
+      "already_configured": "ตั้งค่า FedEx ไว้แล้ว",
+      "reauth_successful": "ยืนยันตัวตนกับ FedEx อีกครั้งสำเร็จแล้ว"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "ตัวเลือก FedEx",
+        "menu_options": {
+          "parcels": "พัสดุ",
+          "settings": "การตั้งค่า"
+        },
+        "sections": {
+          "parcels": {
+            "name": "พัสดุ",
+            "data": {
+              "add": "เพิ่มพัสดุ",
+              "remove": "ลบพัสดุ"
+            },
+            "data_description": {
+              "add": "ป้อนรหัสติดตามของ FedEx เพื่อเริ่มติดตามพัสดุ คุณจะพบรหัสนี้ในอีเมลยืนยันการจัดส่งหรือบนใบแจ้งการนำจ่ายไม่สำเร็จ"
+            }
+          },
+          "delivered": {
+            "name": "พัสดุที่จัดส่งแล้ว",
+            "data": {
+              "delivered_filter_type": "กรองตาม",
+              "delivered_filter_amount": "จำนวน"
+            },
+            "data_description": {
+              "delivered_filter_type": "แสดงพัสดุที่จัดส่งแล้วในช่วง X วันที่ผ่านมา หรือจำกัดไว้ที่ X รายการล่าสุด",
+              "delivered_filter_amount": "จำนวนวันหรือจำนวนพัสดุที่จะแสดง"
+            }
+          },
+          "history": {
+            "name": "ประวัติพัสดุ",
+            "data": {
+              "include_history": "รวมประวัติสถานะ"
+            },
+            "data_description": {
+              "include_history": "เพิ่มแอตทริบิวต์ประวัติของแต่ละพัสดุ ซึ่งแสดงรายการการอัปเดตสถานะแต่ละครั้ง (เวลา สถานะ ข้อความต้นฉบับ) ปิดใช้งานตามค่าเริ่มต้น"
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "จัดการพัสดุ",
+        "data": {
+          "tracking_codes": "รหัสติดตาม"
+        }
+      },
+      "settings": {
+        "title": "การตั้งค่า",
+        "data": {
+          "delivered_filter_type": "พัสดุที่จัดส่งแล้ว: กรองตาม",
+          "delivered_filter_amount": "พัสดุที่จัดส่งแล้ว: จำนวน",
+          "include_history": "รวมประวัติสถานะ"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "นี่ดูเหมือนจะไม่ใช่รหัสติดตามของ FedEx",
+      "already_tracked": "พัสดุนี้ถูกติดตามอยู่แล้ว"
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "วัน",
+        "parcels": "จำนวนพัสดุ"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "ติดตามพัสดุ",
+      "description": "เริ่มติดตามพัสดุด้วยรหัสพัสดุของ FedEx",
+      "fields": {
+        "tracking_code": {
+          "name": "รหัสพัสดุ",
+          "description": "รหัสพัสดุของ FedEx"
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "เลิกติดตามพัสดุ",
+      "description": "หยุดติดตามพัสดุด้วยรหัสพัสดุของ FedEx",
+      "fields": {
+        "tracking_code": {
+          "name": "รหัสพัสดุ",
+          "description": "รหัสพัสดุของ FedEx ที่จะเลิกติดตาม"
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "มีการลงทะเบียนพัสดุ",
+      "parcel_status_changed": "สถานะของพัสดุเปลี่ยนแปลง",
+      "parcel_delivered": "พัสดุถูกจัดส่งแล้ว",
+      "parcel_delivery_time_changed": "เวลาจัดส่งโดยประมาณของพัสดุเปลี่ยนแปลง"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "รีเฟรช"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "การจัดส่ง"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "พัสดุที่กำลังมาถึง",
+        "unit_of_measurement": "พัสดุ"
+      },
+      "next_delivery": {
+        "name": "การจัดส่งครั้งถัดไป"
+      },
+      "awaiting_pickup": {
+        "name": "รอรับพัสดุ",
+        "unit_of_measurement": "ชิ้น"
+      },
+      "delivered_parcels": {
+        "name": "พัสดุที่จัดส่งแล้ว",
+        "unit_of_measurement": "พัสดุ"
+      },
+      "last_update": {
+        "name": "อัปเดตล่าสุดที่สำเร็จ"
+      },
+      "parcel": {
+        "name": "พัสดุ {barcode}"
+      }
+    }
+  }
+}

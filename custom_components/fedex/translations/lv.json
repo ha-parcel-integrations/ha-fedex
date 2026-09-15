@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Iestatīt FedEx",
+        "description": "Ievadiet savu FedEx izstrādātāja API atslēgu. Sūtījumus pēc tam pievienojiet integrācijas iestatījumos vai ar pakalpojumu `fedex.track_parcel`.",
+        "data": {
+          "client_id": "FedEx API atslēga",
+          "client_secret": "FedEx slepenā atslēga"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx noraidīja API atslēgu",
+        "description": "FedEx vairs nepieņem saglabāto API atslēgu — tā, iespējams, ir nomainīta vai atsaukta. Ievadiet jaunu.",
+        "data": {
+          "client_id": "FedEx API atslēga",
+          "client_secret": "FedEx slepenā atslēga"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx noraidīja šo API atslēgu.",
+      "cannot_connect": "Neizdevās sazināties ar FedEx. Mēģiniet vēlreiz."
+    },
+    "abort": {
+      "already_configured": "FedEx jau ir iestatīts.",
+      "reauth_successful": "FedEx atkārtota autentifikācija bija veiksmīga."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FedEx opcijas",
+        "menu_options": {
+          "parcels": "Sūtījumi",
+          "settings": "Iestatījumi"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Sūtījumi",
+            "data": {
+              "add": "Pievienot sūtījumu",
+              "remove": "Noņemt sūtījumus"
+            },
+            "data_description": {
+              "add": "Ievadi FedEx izsekošanas kodu, lai sāktu sūtījuma izsekošanu. To atradīsi nosūtīšanas apstiprinājumā vai piegādes paziņojumā."
+            }
+          },
+          "delivered": {
+            "name": "Piegādātās pakas",
+            "data": {
+              "delivered_filter_type": "Filtrēt pēc",
+              "delivered_filter_amount": "Skaits"
+            },
+            "data_description": {
+              "delivered_filter_type": "Rādīt piegādātās pakas no pēdējām X dienām vai ierobežot līdz X jaunākajām.",
+              "delivered_filter_amount": "Rādāmo dienu vai paku skaits."
+            }
+          },
+          "history": {
+            "name": "Paku vēsture",
+            "data": {
+              "include_history": "Iekļaut statusu vēsturi"
+            },
+            "data_description": {
+              "include_history": "Pievieno katrai pakai vēstures atribūtu, kas uzskaita katru statusa atjauninājumu (laika zīmogs, statuss, oriģinālais teksts). Pēc noklusējuma izslēgts."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Sūtījumi",
+        "data": {
+          "tracking_codes": "Izsekošanas kodi"
+        }
+      },
+      "settings": {
+        "title": "Iestatījumi",
+        "data": {
+          "delivered_filter_type": "Piegādātie sūtījumi: filtrēt pēc",
+          "delivered_filter_amount": "Piegādātie sūtījumi: daudzums",
+          "include_history": "Iekļaut statusa vēsturi"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Tas neizskatās pēc FedEx izsekošanas koda.",
+      "already_tracked": "Šis sūtījums jau tiek izsekots."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Dienas",
+        "parcels": "Paku skaits"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Izsekot sūtījumu",
+      "description": "Sāk sūtījuma izsekošanu pēc tā FedEx izsekošanas koda.",
+      "fields": {
+        "tracking_code": {
+          "name": "Izsekošanas kods",
+          "description": "FedEx izsekošanas kods."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Pārtraukt sūtījuma izsekošanu",
+      "description": "Pārtrauc sūtījuma izsekošanu pēc tā FedEx izsekošanas koda.",
+      "fields": {
+        "tracking_code": {
+          "name": "Izsekošanas kods",
+          "description": "FedEx izsekošanas kods, kuram jāpārtrauc izsekošana."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Paka tika reģistrēta",
+      "parcel_status_changed": "Pakas statuss ir mainījies",
+      "parcel_delivered": "Paka tika piegādāta",
+      "parcel_delivery_time_changed": "Pakas paredzamais piegādes laiks ir mainījies"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Atjaunināt"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Piegādes"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Ienākošās pakas",
+        "unit_of_measurement": "pakas"
+      },
+      "next_delivery": {
+        "name": "Nākamā piegāde"
+      },
+      "awaiting_pickup": {
+        "name": "Gatavs saņemšanai",
+        "unit_of_measurement": "pakas"
+      },
+      "delivered_parcels": {
+        "name": "Piegādātās pakas",
+        "unit_of_measurement": "pakas"
+      },
+      "last_update": {
+        "name": "Pēdējā veiksmīgā atjaunināšana"
+      },
+      "parcel": {
+        "name": "Paka {barcode}"
+      }
+    }
+  }
+}

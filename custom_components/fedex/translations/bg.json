@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Настройка на FedEx",
+        "description": "Въведете собствения си FedEx ключ за разработчици. Добавете пратки след това чрез опциите на интеграцията или услугата `fedex.track_parcel`.",
+        "data": {
+          "client_id": "FedEx API ключ",
+          "client_secret": "FedEx таен ключ"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx отхвърли API ключа",
+        "description": "FedEx вече не приема запазения API ключ — възможно е да е бил подменен или отнет. Въведете нов.",
+        "data": {
+          "client_id": "FedEx API ключ",
+          "client_secret": "FedEx таен ключ"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx отхвърли този API ключ.",
+      "cannot_connect": "FedEx не може да бъде достигнат. Опитайте отново."
+    },
+    "abort": {
+      "already_configured": "FedEx вече е настроен.",
+      "reauth_successful": "FedEx беше удостоверен успешно."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Опции на FedEx",
+        "menu_options": {
+          "parcels": "Пратки",
+          "settings": "Настройки"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Пратки",
+            "data": {
+              "add": "Добавяне на пратка",
+              "remove": "Премахване на пратки"
+            },
+            "data_description": {
+              "add": "Въведете код за проследяване на FedEx, за да го проследите. Ще го намерите в потвърждението за изпращане или на картата за пропусната доставка."
+            }
+          },
+          "delivered": {
+            "name": "Доставени пратки",
+            "data": {
+              "delivered_filter_type": "Филтриране по",
+              "delivered_filter_amount": "Брой"
+            },
+            "data_description": {
+              "delivered_filter_type": "Показва доставени колети от последните X дни или ограничава до последните X.",
+              "delivered_filter_amount": "Брой дни или пратки за показване."
+            }
+          },
+          "history": {
+            "name": "История на колета",
+            "data": {
+              "include_history": "Включване на история на статуса"
+            },
+            "data_description": {
+              "include_history": "Добавя атрибут с история за всеки колет, изброяващ всяка промяна на статуса (час, статус, оригинален текст). По подразбиране е изключено."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Управление на пратки",
+        "data": {
+          "tracking_codes": "Кодове за проследяване"
+        }
+      },
+      "settings": {
+        "title": "Настройки",
+        "data": {
+          "delivered_filter_type": "Доставени пратки: филтриране по",
+          "delivered_filter_amount": "Доставени пратки: брой",
+          "include_history": "Включване на история на статуса"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Това не прилича на код за проследяване на FedEx.",
+      "already_tracked": "Тази пратка вече се проследява."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Дни",
+        "parcels": "Брой пратки"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Проследяване на пратка",
+      "description": "Започва проследяване на колет по неговия код за проследяване на FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Код за проследяване",
+          "description": "Кодът за проследяване на FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Спиране на проследяването на колет",
+      "description": "Спира проследяването на колет по неговия код за проследяване на FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Код за проследяване",
+          "description": "Кодът за проследяване на FedEx, който да спре да се проследява."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Регистрирана е пратка",
+      "parcel_status_changed": "Статусът на пратка се промени",
+      "parcel_delivered": "Колет беше доставен",
+      "parcel_delivery_time_changed": "Очакваното време за доставка на пратка се промени"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Обновяване"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Доставки"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Пристигащи колети",
+        "unit_of_measurement": "пратки"
+      },
+      "next_delivery": {
+        "name": "Следваща доставка"
+      },
+      "awaiting_pickup": {
+        "name": "Готови за вземане",
+        "unit_of_measurement": "колети"
+      },
+      "delivered_parcels": {
+        "name": "Доставени пратки",
+        "unit_of_measurement": "пратки"
+      },
+      "last_update": {
+        "name": "Последно успешно обновяване"
+      },
+      "parcel": {
+        "name": "Пратка {barcode}"
+      }
+    }
+  }
+}

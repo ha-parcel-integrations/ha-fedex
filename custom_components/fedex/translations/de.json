@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "FedEx einrichten",
+        "description": "Gib deinen eigenen FedEx-Entwickler-API-Schlüssel ein. Pakete fügst du danach über die Integrationsoptionen oder den Dienst `fedex.track_parcel` hinzu.",
+        "data": {
+          "client_id": "FedEx API-Schlüssel",
+          "client_secret": "FedEx Geheimschlüssel"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx hat den API-Schlüssel abgelehnt",
+        "description": "FedEx akzeptiert den gespeicherten API-Schlüssel nicht mehr — er wurde möglicherweise erneuert oder widerrufen. Gib einen neuen ein.",
+        "data": {
+          "client_id": "FedEx API-Schlüssel",
+          "client_secret": "FedEx Geheimschlüssel"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx hat diesen API-Schlüssel abgelehnt.",
+      "cannot_connect": "FedEx war nicht erreichbar. Bitte versuche es erneut."
+    },
+    "abort": {
+      "already_configured": "FedEx ist bereits eingerichtet.",
+      "reauth_successful": "FedEx wurde erfolgreich neu authentifiziert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FedEx-Optionen",
+        "menu_options": {
+          "parcels": "Pakete",
+          "settings": "Einstellungen"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Pakete",
+            "data": {
+              "add": "Paket hinzufügen",
+              "remove": "Pakete entfernen"
+            },
+            "data_description": {
+              "add": "Gib einen FedEx-Sendungscode ein, um ihn zu verfolgen. Du findest ihn auf der Versandbestätigung oder der Benachrichtigungskarte bei einem Zustellversuch."
+            }
+          },
+          "delivered": {
+            "name": "Zugestellte Pakete",
+            "data": {
+              "delivered_filter_type": "Filtern nach",
+              "delivered_filter_amount": "Anzahl"
+            },
+            "data_description": {
+              "delivered_filter_type": "Zeige zugestellte Pakete der letzten X Tage oder beschränke die Anzeige auf die letzten X Pakete.",
+              "delivered_filter_amount": "Anzahl der anzuzeigenden Tage oder Pakete."
+            }
+          },
+          "history": {
+            "name": "Paketverlauf",
+            "data": {
+              "include_history": "Statusverlauf einbeziehen"
+            },
+            "data_description": {
+              "include_history": "Fügt jedem Paket ein Verlaufsattribut hinzu, das jede Statusaktualisierung auflistet (Zeitstempel, Status, Originaltext). Standardmäßig deaktiviert."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Pakete verwalten",
+        "data": {
+          "tracking_codes": "Sendungsnummern"
+        }
+      },
+      "settings": {
+        "title": "Einstellungen",
+        "data": {
+          "delivered_filter_type": "Zugestellte Pakete: filtern nach",
+          "delivered_filter_amount": "Zugestellte Pakete: Anzahl",
+          "include_history": "Statusverlauf einbeziehen"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Das sieht nicht wie ein FedEx-Sendungscode aus.",
+      "already_tracked": "Dieses Paket wird bereits verfolgt."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Tage",
+        "parcels": "Anzahl Pakete"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Paket verfolgen",
+      "description": "Beginnt, ein Paket anhand seines FedEx-Sendungscodes zu verfolgen.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sendungsnummer",
+          "description": "Der FedEx-Sendungscode."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Paketverfolgung beenden",
+      "description": "Beendet die Verfolgung eines Pakets anhand seines FedEx-Sendungscodes.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sendungsnummer",
+          "description": "Der FedEx-Sendungscode, dessen Verfolgung beendet werden soll."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Ein Paket wurde registriert",
+      "parcel_status_changed": "Der Status eines Pakets hat sich geändert",
+      "parcel_delivered": "Ein Paket wurde zugestellt",
+      "parcel_delivery_time_changed": "Die voraussichtliche Zustellzeit eines Pakets hat sich geändert"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Aktualisieren"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Zustellungen"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Eingehende Pakete",
+        "unit_of_measurement": "Pakete"
+      },
+      "next_delivery": {
+        "name": "Nächste Zustellung"
+      },
+      "awaiting_pickup": {
+        "name": "Abholbereit",
+        "unit_of_measurement": "Pakete"
+      },
+      "delivered_parcels": {
+        "name": "Zugestellte Pakete",
+        "unit_of_measurement": "Pakete"
+      },
+      "last_update": {
+        "name": "Letzte erfolgreiche Aktualisierung"
+      },
+      "parcel": {
+        "name": "Paket {barcode}"
+      }
+    }
+  }
+}

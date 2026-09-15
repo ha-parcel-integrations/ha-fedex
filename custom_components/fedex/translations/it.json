@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configura FedEx",
+        "description": "Inserisci la tua chiave API sviluppatore FedEx. Aggiungi i pacchi in seguito dalle opzioni dell'integrazione o con il servizio `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Chiave API FedEx",
+          "client_secret": "Chiave segreta FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx ha rifiutato la chiave API",
+        "description": "FedEx non accetta più la chiave API salvata: potrebbe essere stata rinnovata o revocata. Inseriscine una nuova.",
+        "data": {
+          "client_id": "Chiave API FedEx",
+          "client_secret": "Chiave segreta FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx ha rifiutato questa chiave API.",
+      "cannot_connect": "Impossibile raggiungere FedEx. Riprova."
+    },
+    "abort": {
+      "already_configured": "FedEx è già configurato.",
+      "reauth_successful": "FedEx è stato riautenticato correttamente."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni FedEx",
+        "menu_options": {
+          "parcels": "Pacchi",
+          "settings": "Impostazioni"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Pacchi",
+            "data": {
+              "add": "Aggiungi un pacco",
+              "remove": "Rimuovi pacchi"
+            },
+            "data_description": {
+              "add": "Inserisci un codice di tracciamento FedEx per iniziare a seguirlo. Lo trovi sulla conferma di spedizione o sull'avviso di giacenza."
+            }
+          },
+          "delivered": {
+            "name": "Pacchi consegnati",
+            "data": {
+              "delivered_filter_type": "Filtra per",
+              "delivered_filter_amount": "Quantità"
+            },
+            "data_description": {
+              "delivered_filter_type": "Mostra i pacchi consegnati negli ultimi X giorni, oppure limita ai X più recenti.",
+              "delivered_filter_amount": "Numero di giorni o pacchi da mostrare."
+            }
+          },
+          "history": {
+            "name": "Cronologia pacchi",
+            "data": {
+              "include_history": "Includi cronologia degli stati"
+            },
+            "data_description": {
+              "include_history": "Aggiunge a ogni pacco un attributo di cronologia con ogni aggiornamento di stato (data e ora, stato, testo originale). Disattivato per impostazione predefinita."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Pacchi",
+        "data": {
+          "tracking_codes": "Codici di tracciamento"
+        }
+      },
+      "settings": {
+        "title": "Impostazioni",
+        "data": {
+          "delivered_filter_type": "Pacchi consegnati: filtra per",
+          "delivered_filter_amount": "Pacchi consegnati: quantità",
+          "include_history": "Includi cronologia dello stato"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Non sembra un codice di tracciamento FedEx.",
+      "already_tracked": "Questo pacco è già monitorato."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Giorni",
+        "parcels": "Numero di pacchi"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Traccia pacco",
+      "description": "Avvia il tracciamento di un pacco tramite il suo codice di tracciamento FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Codice di tracciamento",
+          "description": "Il codice di tracciamento FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Interrompi tracciamento pacco",
+      "description": "Interrompe il tracciamento di un pacco tramite il suo codice di tracciamento FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Codice di tracciamento",
+          "description": "Il codice di tracciamento FedEx di cui interrompere il tracciamento."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Un pacco è stato registrato",
+      "parcel_status_changed": "Lo stato di un pacco è cambiato",
+      "parcel_delivered": "Un pacco è stato consegnato",
+      "parcel_delivery_time_changed": "L'orario di consegna previsto di un pacco è cambiato"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Aggiorna"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Consegne"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Pacchi in arrivo",
+        "unit_of_measurement": "pacchi"
+      },
+      "next_delivery": {
+        "name": "Prossima consegna"
+      },
+      "awaiting_pickup": {
+        "name": "Pronto per il ritiro",
+        "unit_of_measurement": "pacchi"
+      },
+      "delivered_parcels": {
+        "name": "Pacchi consegnati",
+        "unit_of_measurement": "pacchi"
+      },
+      "last_update": {
+        "name": "Ultimo aggiornamento riuscito"
+      },
+      "parcel": {
+        "name": "Pacco {barcode}"
+      }
+    }
+  }
+}

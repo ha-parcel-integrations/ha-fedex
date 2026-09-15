@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurer FedEx",
+        "description": "Saisissez votre propre clé API développeur FedEx. Ajoutez ensuite des colis via les options de l'intégration ou le service `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Clé API FedEx",
+          "client_secret": "Clé secrète FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Clé API FedEx refusée",
+        "description": "FedEx n'accepte plus la clé API enregistrée — elle a peut-être été renouvelée ou révoquée. Saisissez-en une nouvelle.",
+        "data": {
+          "client_id": "Clé API FedEx",
+          "client_secret": "Clé secrète FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx a refusé cette clé API.",
+      "cannot_connect": "Impossible de joindre FedEx. Veuillez réessayer."
+    },
+    "abort": {
+      "already_configured": "FedEx est déjà configuré.",
+      "reauth_successful": "FedEx a été réauthentifié avec succès."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options FedEx",
+        "menu_options": {
+          "parcels": "Colis",
+          "settings": "Paramètres"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Colis",
+            "data": {
+              "add": "Ajouter un colis",
+              "remove": "Supprimer des colis"
+            },
+            "data_description": {
+              "add": "Saisissez un code de suivi FedEx pour commencer le suivi. Il figure sur la confirmation d'expédition ou l'avis de passage."
+            }
+          },
+          "delivered": {
+            "name": "Colis livrés",
+            "data": {
+              "delivered_filter_type": "Filtrer par",
+              "delivered_filter_amount": "Quantité"
+            },
+            "data_description": {
+              "delivered_filter_type": "Afficher les colis livrés des X derniers jours, ou se limiter aux X plus récents.",
+              "delivered_filter_amount": "Nombre de jours ou de colis à afficher."
+            }
+          },
+          "history": {
+            "name": "Historique des colis",
+            "data": {
+              "include_history": "Inclure l'historique des statuts"
+            },
+            "data_description": {
+              "include_history": "Ajoute un attribut d'historique par colis répertoriant chaque mise à jour de statut (horodatage, statut, texte d'origine). Désactivé par défaut."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Gérer les colis",
+        "data": {
+          "tracking_codes": "Codes de suivi"
+        }
+      },
+      "settings": {
+        "title": "Paramètres",
+        "data": {
+          "delivered_filter_type": "Colis livrés : filtrer par",
+          "delivered_filter_amount": "Colis livrés : nombre",
+          "include_history": "Inclure l’historique des statuts"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Cela ne ressemble pas à un code de suivi FedEx.",
+      "already_tracked": "Ce colis est déjà suivi."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Jours",
+        "parcels": "Nombre de colis"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Suivre un colis",
+      "description": "Commence à suivre un colis par son code de suivi FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Code de suivi",
+          "description": "Le code de suivi FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Ne plus suivre un colis",
+      "description": "Arrête de suivre un colis par son code de suivi FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Code de suivi",
+          "description": "Le code de suivi FedEx à ne plus suivre."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Un colis a été enregistré",
+      "parcel_status_changed": "Le statut d'un colis a changé",
+      "parcel_delivered": "Un colis a été livré",
+      "parcel_delivery_time_changed": "L'heure de livraison prévue d'un colis a changé"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Actualiser"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Livraisons"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Colis entrants",
+        "unit_of_measurement": "colis"
+      },
+      "next_delivery": {
+        "name": "Prochaine livraison"
+      },
+      "awaiting_pickup": {
+        "name": "En attente de retrait",
+        "unit_of_measurement": "colis"
+      },
+      "delivered_parcels": {
+        "name": "Colis livrés",
+        "unit_of_measurement": "colis"
+      },
+      "last_update": {
+        "name": "Dernière mise à jour réussie"
+      },
+      "parcel": {
+        "name": "Colis {barcode}"
+      }
+    }
+  }
+}

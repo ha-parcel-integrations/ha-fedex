@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sett opp FedEx",
+        "description": "Skriv inn din egen FedEx-utvikler-API-nøkkel. Legg til pakker etterpå via integrasjonens innstillinger eller tjenesten `fedex.track_parcel`.",
+        "data": {
+          "client_id": "FedEx API-nøkkel",
+          "client_secret": "FedEx hemmelig nøkkel"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx avviste API-nøkkelen",
+        "description": "FedEx godtar ikke lenger den lagrede API-nøkkelen — den kan være byttet ut eller trukket tilbake. Skriv inn en ny.",
+        "data": {
+          "client_id": "FedEx API-nøkkel",
+          "client_secret": "FedEx hemmelig nøkkel"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx avviste denne API-nøkkelen.",
+      "cannot_connect": "Fikk ikke kontakt med FedEx. Prøv igjen."
+    },
+    "abort": {
+      "already_configured": "FedEx er allerede satt opp.",
+      "reauth_successful": "FedEx ble autentisert på nytt."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FedEx-alternativer",
+        "menu_options": {
+          "parcels": "Pakker",
+          "settings": "Innstillinger"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Pakker",
+            "data": {
+              "add": "Legg til en pakke",
+              "remove": "Fjern pakker"
+            },
+            "data_description": {
+              "add": "Skriv inn en FedEx-sporingskode for å begynne å spore den. Du finner den på forsendelsesbekreftelsen eller kortet for ikke-hentet levering."
+            }
+          },
+          "delivered": {
+            "name": "Leverte pakker",
+            "data": {
+              "delivered_filter_type": "Filtrer etter",
+              "delivered_filter_amount": "Antall"
+            },
+            "data_description": {
+              "delivered_filter_type": "Vis leverte pakker fra de siste X dagene, eller begrens til de X siste.",
+              "delivered_filter_amount": "Antall dager eller pakker som skal vises."
+            }
+          },
+          "history": {
+            "name": "Pakkehistorikk",
+            "data": {
+              "include_history": "Inkluder statushistorikk"
+            },
+            "data_description": {
+              "include_history": "Legger til et historikkattributt per pakke som lister hver statusoppdatering (tidspunkt, status, opprinnelig tekst). Av som standard."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Administrer pakker",
+        "data": {
+          "tracking_codes": "Sporingskoder"
+        }
+      },
+      "settings": {
+        "title": "Innstillinger",
+        "data": {
+          "delivered_filter_type": "Levererte pakker: filtrer etter",
+          "delivered_filter_amount": "Levererte pakker: antall",
+          "include_history": "Inkluder statushistorikk"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Det ser ikke ut som en FedEx-sporingskode.",
+      "already_tracked": "Den pakken spores allerede."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Dager",
+        "parcels": "Antall pakker"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Spor pakke",
+      "description": "Begynn å spore en pakke med FedEx-sporingskoden.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sporingskode",
+          "description": "FedEx-sporingskoden."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Slutt å spore pakke",
+      "description": "Slutt å spore en pakke med FedEx-sporingskoden.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sporingskode",
+          "description": "FedEx-sporingskoden det skal sluttes å spore."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "En pakke ble registrert",
+      "parcel_status_changed": "Statusen til en pakke endret seg",
+      "parcel_delivered": "En pakke ble levert",
+      "parcel_delivery_time_changed": "En pakkes forventede leveringstid endret seg"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Oppdater"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Leveringer"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Innkommende pakker",
+        "unit_of_measurement": "pakker"
+      },
+      "next_delivery": {
+        "name": "Neste levering"
+      },
+      "awaiting_pickup": {
+        "name": "Klar for henting",
+        "unit_of_measurement": "pakker"
+      },
+      "delivered_parcels": {
+        "name": "Leverte pakker",
+        "unit_of_measurement": "pakker"
+      },
+      "last_update": {
+        "name": "Siste vellykkede oppdatering"
+      },
+      "parcel": {
+        "name": "Pakke {barcode}"
+      }
+    }
+  }
+}

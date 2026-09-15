@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ρύθμιση του FedEx",
+        "description": "Εισαγάγετε το δικό σας κλειδί API προγραμματιστή FedEx. Προσθέστε δέματα στη συνέχεια από τις επιλογές της ενσωμάτωσης ή την υπηρεσία `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Κλειδί API FedEx",
+          "client_secret": "Μυστικό κλειδί FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Το FedEx απέρριψε το κλειδί API",
+        "description": "Το FedEx δεν δέχεται πλέον το αποθηκευμένο κλειδί API — μπορεί να έχει ανανεωθεί ή ανακληθεί. Εισαγάγετε ένα νέο.",
+        "data": {
+          "client_id": "Κλειδί API FedEx",
+          "client_secret": "Μυστικό κλειδί FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Το FedEx απέρριψε αυτό το κλειδί API.",
+      "cannot_connect": "Δεν ήταν δυνατή η σύνδεση με το FedEx. Δοκιμάστε ξανά."
+    },
+    "abort": {
+      "already_configured": "Το FedEx έχει ήδη ρυθμιστεί.",
+      "reauth_successful": "Η επανασύνδεση με το FedEx ολοκληρώθηκε με επιτυχία."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Επιλογές FedEx",
+        "menu_options": {
+          "parcels": "Δέματα",
+          "settings": "Ρυθμίσεις"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Δέματα",
+            "data": {
+              "add": "Προσθήκη δέματος",
+              "remove": "Αφαίρεση δεμάτων"
+            },
+            "data_description": {
+              "add": "Εισαγάγετε έναν κωδικό παρακολούθησης FedEx για να ξεκινήσετε την παρακολούθησή του. Θα τον βρείτε στην επιβεβαίωση αποστολής ή στην κάρτα αποτυχημένης παράδοσης."
+            }
+          },
+          "delivered": {
+            "name": "Παραδομένα δέματα",
+            "data": {
+              "delivered_filter_type": "Φιλτράρισμα κατά",
+              "delivered_filter_amount": "Ποσότητα"
+            },
+            "data_description": {
+              "delivered_filter_type": "Εμφανίζει παραδομένα δέματα από τις τελευταίες X ημέρες ή περιορίζει στα X πιο πρόσφατα.",
+              "delivered_filter_amount": "Αριθμός ημερών ή δεμάτων προς εμφάνιση."
+            }
+          },
+          "history": {
+            "name": "Ιστορικό δέματος",
+            "data": {
+              "include_history": "Συμπερίληψη ιστορικού κατάστασης"
+            },
+            "data_description": {
+              "include_history": "Προσθέτει ένα χαρακτηριστικό ιστορικού ανά δέμα, που παραθέτει κάθε ενημέρωση κατάστασης (ώρα, κατάσταση, αρχικό κείμενο). Απενεργοποιημένο από προεπιλογή."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Διαχείριση δεμάτων",
+        "data": {
+          "tracking_codes": "Κωδικοί παρακολούθησης"
+        }
+      },
+      "settings": {
+        "title": "Ρυθμίσεις",
+        "data": {
+          "delivered_filter_type": "Παραδομένα δέματα: φιλτράρισμα κατά",
+          "delivered_filter_amount": "Παραδομένα δέματα: ποσότητα",
+          "include_history": "Συμπερίληψη ιστορικού κατάστασης"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Αυτό δεν μοιάζει με κωδικό παρακολούθησης FedEx.",
+      "already_tracked": "Αυτό το δέμα παρακολουθείται ήδη."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Ημέρες",
+        "parcels": "Αριθμός δεμάτων"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Παρακολούθηση δέματος",
+      "description": "Ξεκινά την παρακολούθηση ενός δέματος με τον κωδικό παρακολούθησης FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Κωδικός παρακολούθησης",
+          "description": "Ο κωδικός παρακολούθησης FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Διακοπή παρακολούθησης δέματος",
+      "description": "Διακόπτει την παρακολούθηση ενός δέματος με τον κωδικό παρακολούθησης FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Κωδικός παρακολούθησης",
+          "description": "Ο κωδικός παρακολούθησης FedEx του οποίου θα διακοπεί η παρακολούθηση."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Καταχωρήθηκε ένα δέμα",
+      "parcel_status_changed": "Η κατάσταση ενός δέματος άλλαξε",
+      "parcel_delivered": "Ένα δέμα παραδόθηκε",
+      "parcel_delivery_time_changed": "Ο αναμενόμενος χρόνος παράδοσης ενός δέματος άλλαξε"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Ανανέωση"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Παραδόσεις"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Εισερχόμενα δέματα",
+        "unit_of_measurement": "δέματα"
+      },
+      "next_delivery": {
+        "name": "Επόμενη παράδοση"
+      },
+      "awaiting_pickup": {
+        "name": "Έτοιμα για παραλαβή",
+        "unit_of_measurement": "δέματα"
+      },
+      "delivered_parcels": {
+        "name": "Παραδομένα δέματα",
+        "unit_of_measurement": "δέματα"
+      },
+      "last_update": {
+        "name": "Τελευταία επιτυχής ενημέρωση"
+      },
+      "parcel": {
+        "name": "Δέμα {barcode}"
+      }
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "FedEx beállítása",
+        "description": "Add meg a saját FedEx fejlesztői API-kulcsodat. A csomagokat utána az integráció beállításaiban vagy a `fedex.track_parcel` szolgáltatással veheted fel.",
+        "data": {
+          "client_id": "FedEx API-kulcs",
+          "client_secret": "FedEx titkos kulcs"
+        }
+      },
+      "reauth_confirm": {
+        "title": "A FedEx elutasította az API-kulcsot",
+        "description": "A FedEx már nem fogadja el a mentett API-kulcsot — lehet, hogy lecserélték vagy visszavonták. Adj meg egy újat.",
+        "data": {
+          "client_id": "FedEx API-kulcs",
+          "client_secret": "FedEx titkos kulcs"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "A FedEx elutasította ezt az API-kulcsot.",
+      "cannot_connect": "A FedEx nem érhető el. Próbáld újra."
+    },
+    "abort": {
+      "already_configured": "A FedEx már be van állítva.",
+      "reauth_successful": "A FedEx újbóli hitelesítése sikerült."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FedEx beállítások",
+        "menu_options": {
+          "parcels": "Csomagok",
+          "settings": "Beállítások"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Csomagok",
+            "data": {
+              "add": "Csomag hozzáadása",
+              "remove": "Csomagok eltávolítása"
+            },
+            "data_description": {
+              "add": "Add meg a FedEx nyomkövetési kódot a csomag követésének elindításához. Megtalálod a szállítási visszaigazoláson vagy a kézbesítési értesítőn."
+            }
+          },
+          "delivered": {
+            "name": "Kézbesített csomagok",
+            "data": {
+              "delivered_filter_type": "Szűrés",
+              "delivered_filter_amount": "Mennyiség"
+            },
+            "data_description": {
+              "delivered_filter_type": "Az elmúlt X nap kézbesített csomagjainak megjelenítése, vagy korlátozás a legutóbbi X darabra.",
+              "delivered_filter_amount": "A megjelenítendő napok vagy csomagok száma."
+            }
+          },
+          "history": {
+            "name": "Csomagelőzmények",
+            "data": {
+              "include_history": "Állapotelőzmények megjelenítése"
+            },
+            "data_description": {
+              "include_history": "Minden csomaghoz hozzáad egy előzmény attribútumot, amely felsorolja az egyes állapotfrissítéseket (időbélyeg, állapot, eredeti szöveg). Alapértelmezés szerint kikapcsolva."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Csomagok",
+        "data": {
+          "tracking_codes": "Követési kódok"
+        }
+      },
+      "settings": {
+        "title": "Beállítások",
+        "data": {
+          "delivered_filter_type": "Kézbesített csomagok: szűrés",
+          "delivered_filter_amount": "Kézbesített csomagok: darabszám",
+          "include_history": "Állapotelőzmények megjelenítése"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Ez nem hasonlít FedEx nyomkövetési kódra.",
+      "already_tracked": "Ezt a csomagot már követik."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Nap",
+        "parcels": "Csomagok száma"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Csomag követése",
+      "description": "Elindítja egy csomag követését a FedEx nyomkövetési kódja alapján.",
+      "fields": {
+        "tracking_code": {
+          "name": "Nyomkövetési kód",
+          "description": "A FedEx nyomkövetési kódja."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Csomag követésének leállítása",
+      "description": "Leállítja egy csomag követését a FedEx nyomkövetési kódja alapján.",
+      "fields": {
+        "tracking_code": {
+          "name": "Nyomkövetési kód",
+          "description": "A FedEx nyomkövetési kódja, amelynek követését le kell állítani."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Egy csomagot regisztráltak",
+      "parcel_status_changed": "Egy csomag állapota megváltozott",
+      "parcel_delivered": "Egy csomagot kézbesítettek",
+      "parcel_delivery_time_changed": "Egy csomag várható kézbesítési ideje megváltozott"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Frissítés"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Kézbesítések"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Érkező csomagok",
+        "unit_of_measurement": "csomag"
+      },
+      "next_delivery": {
+        "name": "Következő kézbesítés"
+      },
+      "awaiting_pickup": {
+        "name": "Átvételre kész",
+        "unit_of_measurement": "csomag"
+      },
+      "delivered_parcels": {
+        "name": "Kézbesített csomagok",
+        "unit_of_measurement": "csomag"
+      },
+      "last_update": {
+        "name": "Utolsó sikeres frissítés"
+      },
+      "parcel": {
+        "name": "Csomag {barcode}"
+      }
+    }
+  }
+}

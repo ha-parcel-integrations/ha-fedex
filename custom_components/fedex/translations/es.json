@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurar FedEx",
+        "description": "Introduce tu propia clave de API de desarrollador de FedEx. Después añade paquetes desde las opciones de la integración o con el servicio `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Clave de API de FedEx",
+          "client_secret": "Clave secreta de FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx rechazó la clave de API",
+        "description": "FedEx ya no acepta la clave de API guardada; puede que se haya renovado o revocado. Introduce una nueva.",
+        "data": {
+          "client_id": "Clave de API de FedEx",
+          "client_secret": "Clave secreta de FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx rechazó esta clave de API.",
+      "cannot_connect": "No se pudo conectar con FedEx. Inténtalo de nuevo."
+    },
+    "abort": {
+      "already_configured": "FedEx ya está configurado.",
+      "reauth_successful": "FedEx se ha vuelto a autenticar correctamente."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opciones de FedEx",
+        "menu_options": {
+          "parcels": "Paquetes",
+          "settings": "Ajustes"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Paquetes",
+            "data": {
+              "add": "Añadir un paquete",
+              "remove": "Eliminar paquetes"
+            },
+            "data_description": {
+              "add": "Introduce un código de seguimiento de FedEx para empezar a rastrearlo. Lo encuentras en la confirmación de envío o en el aviso de entrega fallida."
+            }
+          },
+          "delivered": {
+            "name": "Paquetes entregados",
+            "data": {
+              "delivered_filter_type": "Filtrar por",
+              "delivered_filter_amount": "Cantidad"
+            },
+            "data_description": {
+              "delivered_filter_type": "Muestra los paquetes entregados de los últimos X días, o limita a los X más recientes.",
+              "delivered_filter_amount": "Número de días o paquetes a mostrar."
+            }
+          },
+          "history": {
+            "name": "Historial de paquetes",
+            "data": {
+              "include_history": "Incluir historial de estados"
+            },
+            "data_description": {
+              "include_history": "Añade un atributo de historial por paquete con cada actualización de estado (marca de tiempo, estado, texto original). Desactivado por defecto."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Gestionar paquetes",
+        "data": {
+          "tracking_codes": "Códigos de seguimiento"
+        }
+      },
+      "settings": {
+        "title": "Ajustes",
+        "data": {
+          "delivered_filter_type": "Paquetes entregados: filtrar por",
+          "delivered_filter_amount": "Paquetes entregados: cantidad",
+          "include_history": "Incluir historial de estado"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Eso no parece un código de seguimiento de FedEx.",
+      "already_tracked": "Ese paquete ya se está rastreando."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Días",
+        "parcels": "Número de paquetes"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Rastrear paquete",
+      "description": "Empieza a rastrear un paquete por su código de seguimiento de FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Código de seguimiento",
+          "description": "El código de seguimiento de FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Dejar de rastrear paquete",
+      "description": "Deja de rastrear un paquete por su código de seguimiento de FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Código de seguimiento",
+          "description": "El código de seguimiento de FedEx que se dejará de rastrear."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Se registró un paquete",
+      "parcel_status_changed": "El estado de un paquete ha cambiado",
+      "parcel_delivered": "Se entregó un paquete",
+      "parcel_delivery_time_changed": "La hora de entrega prevista de un paquete ha cambiado"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Actualizar"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Entregas"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Paquetes entrantes",
+        "unit_of_measurement": "paquetes"
+      },
+      "next_delivery": {
+        "name": "Próxima entrega"
+      },
+      "awaiting_pickup": {
+        "name": "Listo para recoger",
+        "unit_of_measurement": "paquetes"
+      },
+      "delivered_parcels": {
+        "name": "Paquetes entregados",
+        "unit_of_measurement": "paquetes"
+      },
+      "last_update": {
+        "name": "Última actualización correcta"
+      },
+      "parcel": {
+        "name": "Paquete {barcode}"
+      }
+    }
+  }
+}

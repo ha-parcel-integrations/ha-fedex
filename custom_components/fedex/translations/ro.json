@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurare FedEx",
+        "description": "Introdu propria cheie API de dezvoltator FedEx. Adaugă coletele ulterior din opțiunile integrării sau cu serviciul `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Cheie API FedEx",
+          "client_secret": "Cheie secretă FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx a respins cheia API",
+        "description": "FedEx nu mai acceptă cheia API salvată — este posibil să fi fost schimbată sau revocată. Introdu una nouă.",
+        "data": {
+          "client_id": "Cheie API FedEx",
+          "client_secret": "Cheie secretă FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx a respins această cheie API.",
+      "cannot_connect": "FedEx nu a putut fi contactat. Încearcă din nou."
+    },
+    "abort": {
+      "already_configured": "FedEx este deja configurat.",
+      "reauth_successful": "FedEx a fost reautentificat cu succes."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opțiuni FedEx",
+        "menu_options": {
+          "parcels": "Colete",
+          "settings": "Setări"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Colete",
+            "data": {
+              "add": "Adaugă un colet",
+              "remove": "Elimină colete"
+            },
+            "data_description": {
+              "add": "Introduceți un cod de urmărire FedEx."
+            }
+          },
+          "delivered": {
+            "name": "Colete livrate",
+            "data": {
+              "delivered_filter_type": "Filtrează după",
+              "delivered_filter_amount": "Cantitate"
+            },
+            "data_description": {
+              "delivered_filter_type": "Afișează coletele livrate din ultimele X zile sau limitează la cele mai recente X.",
+              "delivered_filter_amount": "Numărul de zile sau colete de afișat."
+            }
+          },
+          "history": {
+            "name": "Istoric colet",
+            "data": {
+              "include_history": "Include istoricul stărilor"
+            },
+            "data_description": {
+              "include_history": "Adaugă istoricul actualizărilor de stare pentru fiecare colet."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Gestionare colete",
+        "data": {
+          "tracking_codes": "Coduri de urmărire"
+        }
+      },
+      "settings": {
+        "title": "Setări",
+        "data": {
+          "delivered_filter_type": "Colete livrate: filtrează după",
+          "delivered_filter_amount": "Colete livrate: număr",
+          "include_history": "Include istoricul stării"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Acesta nu pare a fi un cod de urmărire FedEx.",
+      "already_tracked": "Acest colet este deja urmărit."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Zile",
+        "parcels": "Număr de colete"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Urmărește colet",
+      "description": "Începe urmărirea unui colet FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Cod de urmărire",
+          "description": "Codul de urmărire FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Oprește urmărirea coletului",
+      "description": "Oprește urmărirea unui colet FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Cod de urmărire",
+          "description": "Codul de urmărire FedEx care nu mai trebuie urmărit."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Un colet a fost înregistrat",
+      "parcel_status_changed": "Starea unui colet s-a schimbat",
+      "parcel_delivered": "Un colet a fost livrat",
+      "parcel_delivery_time_changed": "Ora estimată de livrare a unui colet s-a schimbat"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Actualizează"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Livrări"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Colete primite",
+        "unit_of_measurement": "colete"
+      },
+      "next_delivery": {
+        "name": "Următoarea livrare"
+      },
+      "awaiting_pickup": {
+        "name": "Gata de ridicare",
+        "unit_of_measurement": "colete"
+      },
+      "delivered_parcels": {
+        "name": "Colete livrate",
+        "unit_of_measurement": "colete"
+      },
+      "last_update": {
+        "name": "Ultima actualizare reușită"
+      },
+      "parcel": {
+        "name": "Colet {barcode}"
+      }
+    }
+  }
+}

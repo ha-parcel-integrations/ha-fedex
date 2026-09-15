@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Konfigurera FedEx",
+        "description": "Ange din egen FedEx-utvecklar-API-nyckel. Lägg till paket efteråt via integrationens inställningar eller tjänsten `fedex.track_parcel`.",
+        "data": {
+          "client_id": "FedEx API-nyckel",
+          "client_secret": "FedEx hemlig nyckel"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx avvisade API-nyckeln",
+        "description": "FedEx accepterar inte längre den sparade API-nyckeln — den kan ha bytts ut eller återkallats. Ange en ny.",
+        "data": {
+          "client_id": "FedEx API-nyckel",
+          "client_secret": "FedEx hemlig nyckel"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx avvisade den här API-nyckeln.",
+      "cannot_connect": "Kunde inte nå FedEx. Försök igen."
+    },
+    "abort": {
+      "already_configured": "FedEx är redan konfigurerat.",
+      "reauth_successful": "FedEx autentiserades på nytt."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FedEx-alternativ",
+        "menu_options": {
+          "parcels": "Paket",
+          "settings": "Inställningar"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Paket",
+            "data": {
+              "add": "Lägg till ett paket",
+              "remove": "Ta bort paket"
+            },
+            "data_description": {
+              "add": "Ange en FedEx-spårningskod för att börja spåra den. Du hittar den på leveransbekräftelsen eller kortet för missat leveransförsök."
+            }
+          },
+          "delivered": {
+            "name": "Levererade paket",
+            "data": {
+              "delivered_filter_type": "Filtrera efter",
+              "delivered_filter_amount": "Antal"
+            },
+            "data_description": {
+              "delivered_filter_type": "Visa levererade paket från de senaste X dagarna, eller begränsa till de X senaste.",
+              "delivered_filter_amount": "Antal dagar eller paket att visa."
+            }
+          },
+          "history": {
+            "name": "Pakethistorik",
+            "data": {
+              "include_history": "Inkludera statushistorik"
+            },
+            "data_description": {
+              "include_history": "Lägg till ett historikattribut per paket som listar varje statusuppdatering (tidsstämpel, status, originaltext). Avstängt som standard."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Hantera paket",
+        "data": {
+          "tracking_codes": "Spårningskoder"
+        }
+      },
+      "settings": {
+        "title": "Inställningar",
+        "data": {
+          "delivered_filter_type": "Levererade paket: filtrera efter",
+          "delivered_filter_amount": "Levererade paket: antal",
+          "include_history": "Inkludera statushistorik"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Det ser inte ut som en FedEx-spårningskod.",
+      "already_tracked": "Det paketet spåras redan."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Dagar",
+        "parcels": "Antal paket"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Spåra paket",
+      "description": "Börja spåra ett paket med dess FedEx-spårningskod.",
+      "fields": {
+        "tracking_code": {
+          "name": "Spårningskod",
+          "description": "FedEx-spårningskoden."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Sluta spåra paket",
+      "description": "Sluta spåra ett paket med dess FedEx-spårningskod.",
+      "fields": {
+        "tracking_code": {
+          "name": "Spårningskod",
+          "description": "FedEx-spårningskoden att sluta spåra."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Ett paket registrerades",
+      "parcel_status_changed": "Ett pakets status ändrades",
+      "parcel_delivered": "Ett paket levererades",
+      "parcel_delivery_time_changed": "Ett pakets förväntade leveranstid ändrades"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Uppdatera"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Leveranser"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Inkommande paket",
+        "unit_of_measurement": "paket"
+      },
+      "next_delivery": {
+        "name": "Nästa leverans"
+      },
+      "awaiting_pickup": {
+        "name": "Redo för upphämtning",
+        "unit_of_measurement": "paket"
+      },
+      "delivered_parcels": {
+        "name": "Levererade paket",
+        "unit_of_measurement": "paket"
+      },
+      "last_update": {
+        "name": "Senaste lyckade uppdatering"
+      },
+      "parcel": {
+        "name": "Paket {barcode}"
+      }
+    }
+  }
+}

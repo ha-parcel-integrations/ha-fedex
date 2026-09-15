@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Siapkan FedEx",
+        "description": "Masukkan kunci API pengembang FedEx Anda sendiri. Tambahkan paket setelahnya melalui opsi integrasi atau layanan `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Kunci API FedEx",
+          "client_secret": "Kunci rahasia FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx menolak kunci API",
+        "description": "FedEx tidak lagi menerima kunci API yang tersimpan — mungkin sudah diganti atau dicabut. Masukkan yang baru.",
+        "data": {
+          "client_id": "Kunci API FedEx",
+          "client_secret": "Kunci rahasia FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx menolak kunci API ini.",
+      "cannot_connect": "Tidak dapat menghubungi FedEx. Silakan coba lagi."
+    },
+    "abort": {
+      "already_configured": "FedEx sudah disiapkan.",
+      "reauth_successful": "FedEx berhasil diautentikasi ulang."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opsi FedEx",
+        "menu_options": {
+          "parcels": "Paket",
+          "settings": "Pengaturan"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Paket",
+            "data": {
+              "add": "Tambahkan paket",
+              "remove": "Hapus paket"
+            },
+            "data_description": {
+              "add": "Masukkan kode pelacakan FedEx untuk mulai melacaknya. Kode ini ada pada konfirmasi pengiriman atau kartu pemberitahuan pengiriman."
+            }
+          },
+          "delivered": {
+            "name": "Paket terkirim",
+            "data": {
+              "delivered_filter_type": "Filter berdasarkan",
+              "delivered_filter_amount": "Jumlah"
+            },
+            "data_description": {
+              "delivered_filter_type": "Tampilkan paket terkirim dari X hari terakhir, atau batasi hingga X paket terbaru.",
+              "delivered_filter_amount": "Jumlah hari atau paket yang ditampilkan."
+            }
+          },
+          "history": {
+            "name": "Riwayat paket",
+            "data": {
+              "include_history": "Sertakan riwayat status"
+            },
+            "data_description": {
+              "include_history": "Menambahkan atribut riwayat per paket yang mencantumkan setiap pembaruan status (waktu, status, teks asli). Nonaktif secara default."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Kelola paket",
+        "data": {
+          "tracking_codes": "Kode pelacakan"
+        }
+      },
+      "settings": {
+        "title": "Pengaturan",
+        "data": {
+          "delivered_filter_type": "Paket terkirim: filter berdasarkan",
+          "delivered_filter_amount": "Paket terkirim: jumlah",
+          "include_history": "Sertakan riwayat status"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Itu sepertinya bukan kode pelacakan FedEx.",
+      "already_tracked": "Paket tersebut sudah dilacak."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Hari",
+        "parcels": "Jumlah paket"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Lacak paket",
+      "description": "Mulai melacak paket menggunakan kode resi FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Kode resi",
+          "description": "Kode resi FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Berhenti melacak paket",
+      "description": "Berhenti melacak paket menggunakan kode resi FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Kode resi",
+          "description": "Kode resi FedEx yang akan berhenti dilacak."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Paket telah terdaftar",
+      "parcel_status_changed": "Status paket berubah",
+      "parcel_delivered": "Paket telah terkirim",
+      "parcel_delivery_time_changed": "Perkiraan waktu pengiriman paket berubah"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Segarkan"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Pengiriman"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Paket masuk",
+        "unit_of_measurement": "paket"
+      },
+      "next_delivery": {
+        "name": "Pengiriman berikutnya"
+      },
+      "awaiting_pickup": {
+        "name": "Menunggu diambil",
+        "unit_of_measurement": "paket"
+      },
+      "delivered_parcels": {
+        "name": "Paket terkirim",
+        "unit_of_measurement": "paket"
+      },
+      "last_update": {
+        "name": "Pembaruan berhasil terakhir"
+      },
+      "parcel": {
+        "name": "Paket {barcode}"
+      }
+    }
+  }
+}

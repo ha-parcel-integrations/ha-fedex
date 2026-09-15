@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nastavit FedEx",
+        "description": "Zadejte svůj vlastní vývojářský klíč API FedEx. Zásilky přidáte poté v nastavení integrace nebo službou `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Klíč API FedEx",
+          "client_secret": "Tajný klíč FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx odmítl klíč API",
+        "description": "FedEx už uložený klíč API nepřijímá — mohl být obměněn nebo zrušen. Zadejte nový.",
+        "data": {
+          "client_id": "Klíč API FedEx",
+          "client_secret": "Tajný klíč FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx tento klíč API odmítl.",
+      "cannot_connect": "FedEx se nepodařilo kontaktovat. Zkuste to prosím znovu."
+    },
+    "abort": {
+      "already_configured": "FedEx je již nastaveno.",
+      "reauth_successful": "Ověření FedEx proběhlo úspěšně."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Možnosti FedEx",
+        "menu_options": {
+          "parcels": "Zásilky",
+          "settings": "Nastavení"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Zásilky",
+            "data": {
+              "add": "Přidat zásilku",
+              "remove": "Odebrat zásilky"
+            },
+            "data_description": {
+              "add": "Zadejte sledovací kód FedEx, abyste zásilku začali sledovat. Najdete jej na potvrzení odeslání nebo oznámení o nedoručení."
+            }
+          },
+          "delivered": {
+            "name": "Doručené zásilky",
+            "data": {
+              "delivered_filter_type": "Filtrovat podle",
+              "delivered_filter_amount": "Počet"
+            },
+            "data_description": {
+              "delivered_filter_type": "Zobrazit doručené zásilky za posledních X dní, nebo omezit na X nejnovějších.",
+              "delivered_filter_amount": "Počet dní nebo zásilek k zobrazení."
+            }
+          },
+          "history": {
+            "name": "Historie zásilky",
+            "data": {
+              "include_history": "Zahrnout historii stavů"
+            },
+            "data_description": {
+              "include_history": "Přidá u každé zásilky atribut s historií každé změny stavu (čas, stav, původní text). Ve výchozím nastavení vypnuto."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Spravovat zásilky",
+        "data": {
+          "tracking_codes": "Sledovací kódy"
+        }
+      },
+      "settings": {
+        "title": "Nastavení",
+        "data": {
+          "delivered_filter_type": "Doručené zásilky: filtrovat podle",
+          "delivered_filter_amount": "Doručené zásilky: počet",
+          "include_history": "Zahrnout historii stavu"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "To nevypadá jako sledovací kód FedEx.",
+      "already_tracked": "Tato zásilka je již sledována."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Dny",
+        "parcels": "Počet zásilek"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Sledovat zásilku",
+      "description": "Zahájí sledování zásilky podle jejího sledovacího kódu FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sledovací kód",
+          "description": "Sledovací kód FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Přestat sledovat zásilku",
+      "description": "Ukončí sledování zásilky podle jejího sledovacího kódu FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sledovací kód",
+          "description": "Sledovací kód FedEx, který se má přestat sledovat."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Zásilka byla zaregistrována",
+      "parcel_status_changed": "Stav zásilky se změnil",
+      "parcel_delivered": "Zásilka byla doručena",
+      "parcel_delivery_time_changed": "Očekávaný čas doručení zásilky se změnil"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Aktualizovat"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Doručení"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Příchozí zásilky",
+        "unit_of_measurement": "zásilky"
+      },
+      "next_delivery": {
+        "name": "Očekávané doručení"
+      },
+      "awaiting_pickup": {
+        "name": "Připraveno k vyzvednutí",
+        "unit_of_measurement": "zásilky"
+      },
+      "delivered_parcels": {
+        "name": "Doručené zásilky",
+        "unit_of_measurement": "zásilky"
+      },
+      "last_update": {
+        "name": "Poslední úspěšná aktualizace"
+      },
+      "parcel": {
+        "name": "Zásilka {barcode}"
+      }
+    }
+  }
+}

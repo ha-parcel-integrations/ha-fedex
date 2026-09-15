@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurar o FedEx",
+        "description": "Informe sua própria chave de API de desenvolvedor da FedEx. Adicione encomendas depois nas opções da integração ou pelo serviço `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Chave de API FedEx",
+          "client_secret": "Chave secreta FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "A FedEx recusou a chave de API",
+        "description": "A FedEx não aceita mais a chave de API salva — ela pode ter sido substituída ou revogada. Informe uma nova.",
+        "data": {
+          "client_id": "Chave de API FedEx",
+          "client_secret": "Chave secreta FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "A FedEx recusou esta chave de API.",
+      "cannot_connect": "Não foi possível acessar a FedEx. Tente novamente."
+    },
+    "abort": {
+      "already_configured": "A FedEx já está configurada.",
+      "reauth_successful": "A FedEx foi autenticada novamente com sucesso."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opções do FedEx",
+        "menu_options": {
+          "parcels": "Encomendas",
+          "settings": "Configurações"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Pacotes",
+            "data": {
+              "add": "Adicionar um pacote",
+              "remove": "Remover pacotes"
+            },
+            "data_description": {
+              "add": "Informe um código de rastreamento da FedEx para começar a acompanhá-lo. Ele está na confirmação de envio ou no aviso de entrega."
+            }
+          },
+          "delivered": {
+            "name": "Pacotes entregues",
+            "data": {
+              "delivered_filter_type": "Filtrar por",
+              "delivered_filter_amount": "Quantidade"
+            },
+            "data_description": {
+              "delivered_filter_type": "Mostrar pacotes entregues dos últimos X dias, ou limitar aos X mais recentes.",
+              "delivered_filter_amount": "Número de dias ou pacotes a mostrar."
+            }
+          },
+          "history": {
+            "name": "Histórico de pacotes",
+            "data": {
+              "include_history": "Incluir histórico de status"
+            },
+            "data_description": {
+              "include_history": "Adiciona um atributo de histórico por pacote listando cada atualização de status (data/hora, status, texto original). Desativado por padrão."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Gerenciar encomendas",
+        "data": {
+          "tracking_codes": "Códigos de rastreamento"
+        }
+      },
+      "settings": {
+        "title": "Configurações",
+        "data": {
+          "delivered_filter_type": "Encomendas entregues: filtrar por",
+          "delivered_filter_amount": "Encomendas entregues: quantidade",
+          "include_history": "Incluir histórico de status"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Isso não parece ser um código de rastreamento da FedEx.",
+      "already_tracked": "Esse pacote já está sendo rastreado."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Dias",
+        "parcels": "Número de pacotes"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Rastrear pacote",
+      "description": "Começar a rastrear um pacote pelo código de rastreio do FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Código de rastreio",
+          "description": "O código de rastreio do FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Parar de rastrear pacote",
+      "description": "Parar de rastrear um pacote pelo código de rastreio do FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Código de rastreio",
+          "description": "O código de rastreio do FedEx para parar de rastrear."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Um pacote foi registrado",
+      "parcel_status_changed": "O status de um pacote foi alterado",
+      "parcel_delivered": "Um pacote foi entregue",
+      "parcel_delivery_time_changed": "O horário de entrega previsto de um pacote foi alterado"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Atualizar"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Entregas"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Pacotes a caminho",
+        "unit_of_measurement": "pacotes"
+      },
+      "next_delivery": {
+        "name": "Próxima entrega"
+      },
+      "awaiting_pickup": {
+        "name": "Aguardando retirada",
+        "unit_of_measurement": "encomendas"
+      },
+      "delivered_parcels": {
+        "name": "Pacotes entregues",
+        "unit_of_measurement": "pacotes"
+      },
+      "last_update": {
+        "name": "Última atualização bem-sucedida"
+      },
+      "parcel": {
+        "name": "Pacote {barcode}"
+      }
+    }
+  }
+}

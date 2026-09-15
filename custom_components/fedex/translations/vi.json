@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Thiết lập FedEx",
+        "description": "Nhập khóa API nhà phát triển FedEx của riêng bạn. Sau đó thêm bưu kiện trong tùy chọn của tích hợp hoặc bằng dịch vụ `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Khóa API FedEx",
+          "client_secret": "Khóa bí mật FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx đã từ chối khóa API",
+        "description": "FedEx không còn chấp nhận khóa API đã lưu — khóa có thể đã được thay hoặc thu hồi. Hãy nhập khóa mới.",
+        "data": {
+          "client_id": "Khóa API FedEx",
+          "client_secret": "Khóa bí mật FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx đã từ chối khóa API này.",
+      "cannot_connect": "Không thể kết nối tới FedEx. Vui lòng thử lại."
+    },
+    "abort": {
+      "already_configured": "FedEx đã được thiết lập.",
+      "reauth_successful": "Đã xác thực lại FedEx thành công."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tùy chọn FedEx",
+        "menu_options": {
+          "parcels": "Kiện hàng",
+          "settings": "Cài đặt"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Kiện hàng",
+            "data": {
+              "add": "Thêm kiện hàng",
+              "remove": "Xóa kiện hàng"
+            },
+            "data_description": {
+              "add": "Nhập mã vận đơn FedEx để bắt đầu theo dõi. Bạn tìm thấy mã này trên xác nhận giao hàng hoặc phiếu báo giao không thành công."
+            }
+          },
+          "delivered": {
+            "name": "Kiện hàng đã giao",
+            "data": {
+              "delivered_filter_type": "Lọc theo",
+              "delivered_filter_amount": "Số lượng"
+            },
+            "data_description": {
+              "delivered_filter_type": "Hiển thị các kiện hàng đã giao trong X ngày gần nhất, hoặc giới hạn ở X kiện gần đây nhất.",
+              "delivered_filter_amount": "Số ngày hoặc số kiện hàng cần hiển thị."
+            }
+          },
+          "history": {
+            "name": "Lịch sử kiện hàng",
+            "data": {
+              "include_history": "Bao gồm lịch sử trạng thái"
+            },
+            "data_description": {
+              "include_history": "Thêm một thuộc tính lịch sử cho mỗi kiện hàng, liệt kê từng lần cập nhật trạng thái (thời gian, trạng thái, văn bản gốc). Mặc định tắt."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Quản lý kiện hàng",
+        "data": {
+          "tracking_codes": "Mã vận đơn"
+        }
+      },
+      "settings": {
+        "title": "Cài đặt",
+        "data": {
+          "delivered_filter_type": "Kiện hàng đã giao: lọc theo",
+          "delivered_filter_amount": "Kiện hàng đã giao: số lượng",
+          "include_history": "Bao gồm lịch sử trạng thái"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Đó có vẻ không phải là mã vận đơn FedEx.",
+      "already_tracked": "Kiện hàng này đã được theo dõi."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Ngày",
+        "parcels": "Số lượng kiện hàng"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Theo dõi kiện hàng",
+      "description": "Bắt đầu theo dõi một kiện hàng bằng mã vận đơn FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Mã vận đơn",
+          "description": "Mã vận đơn FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Ngừng theo dõi kiện hàng",
+      "description": "Ngừng theo dõi một kiện hàng bằng mã vận đơn FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Mã vận đơn",
+          "description": "Mã vận đơn FedEx cần ngừng theo dõi."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Một kiện hàng đã được đăng ký",
+      "parcel_status_changed": "Trạng thái của một kiện hàng đã thay đổi",
+      "parcel_delivered": "Một kiện hàng đã được giao",
+      "parcel_delivery_time_changed": "Thời gian giao hàng dự kiến của một kiện hàng đã thay đổi"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Làm mới"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Giao hàng"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Kiện hàng đang đến",
+        "unit_of_measurement": "kiện hàng"
+      },
+      "next_delivery": {
+        "name": "Lần giao hàng tiếp theo"
+      },
+      "awaiting_pickup": {
+        "name": "Chờ nhận hàng",
+        "unit_of_measurement": "bưu kiện"
+      },
+      "delivered_parcels": {
+        "name": "Kiện hàng đã giao",
+        "unit_of_measurement": "kiện hàng"
+      },
+      "last_update": {
+        "name": "Cập nhật thành công gần nhất"
+      },
+      "parcel": {
+        "name": "Kiện hàng {barcode}"
+      }
+    }
+  }
+}

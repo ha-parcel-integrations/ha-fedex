@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Postavljanje FedEx-a",
+        "description": "Unesite vlastiti FedEx razvojni API ključ. Pakete zatim dodajte u postavkama integracije ili uslugom `fedex.track_parcel`.",
+        "data": {
+          "client_id": "FedEx API ključ",
+          "client_secret": "FedEx tajni ključ"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx je odbio API ključ",
+        "description": "FedEx više ne prihvaća spremljeni API ključ — možda je zamijenjen ili opozvan. Unesite novi.",
+        "data": {
+          "client_id": "FedEx API ključ",
+          "client_secret": "FedEx tajni ključ"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx je odbio ovaj API ključ.",
+      "cannot_connect": "Nije moguće doći do FedExa. Pokušajte ponovno."
+    },
+    "abort": {
+      "already_configured": "FedEx je već postavljen.",
+      "reauth_successful": "FedEx je uspješno ponovno autentificiran."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opcije FedEx-a",
+        "menu_options": {
+          "parcels": "Pošiljke",
+          "settings": "Postavke"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Pošiljke",
+            "data": {
+              "add": "Dodaj pošiljku",
+              "remove": "Ukloni pošiljke"
+            },
+            "data_description": {
+              "add": "Unesite kod za praćenje FedEx-a kako biste ga počeli pratiti. Naći ćete ga na potvrdi otpreme ili na kartici o propuštenoj dostavi."
+            }
+          },
+          "delivered": {
+            "name": "Dostavljeni paketi",
+            "data": {
+              "delivered_filter_type": "Filtriraj po",
+              "delivered_filter_amount": "Količina"
+            },
+            "data_description": {
+              "delivered_filter_type": "Prikazuje dostavljene pošiljke iz zadnjih X dana ili ograničava na X najnovijih.",
+              "delivered_filter_amount": "Broj dana ili paketa za prikaz."
+            }
+          },
+          "history": {
+            "name": "Povijest paketa",
+            "data": {
+              "include_history": "Uključi povijest statusa"
+            },
+            "data_description": {
+              "include_history": "Dodaje atribut povijesti po pošiljci koji navodi svako ažuriranje statusa (vrijeme, status, izvorni tekst). Zadano isključeno."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Upravljanje pošiljkama",
+        "data": {
+          "tracking_codes": "Kodovi za praćenje"
+        }
+      },
+      "settings": {
+        "title": "Postavke",
+        "data": {
+          "delivered_filter_type": "Dostavljene pošiljke: filtriraj po",
+          "delivered_filter_amount": "Dostavljene pošiljke: količina",
+          "include_history": "Uključi povijest statusa"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Ovo ne izgleda kao kod za praćenje FedEx-a.",
+      "already_tracked": "Ova pošiljka se već prati."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Dani",
+        "parcels": "Broj paketa"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Praćenje pošiljke",
+      "description": "Počinje pratiti pošiljku prema njezinom kodu za praćenje FedEx-a.",
+      "fields": {
+        "tracking_code": {
+          "name": "Kod za praćenje",
+          "description": "Kod za praćenje FedEx-a."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Prestani pratiti pošiljku",
+      "description": "Prestaje pratiti pošiljku prema njezinom kodu za praćenje FedEx-a.",
+      "fields": {
+        "tracking_code": {
+          "name": "Kod za praćenje",
+          "description": "Kod za praćenje FedEx-a koji treba prestati pratiti."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Paket je registriran",
+      "parcel_status_changed": "Status paketa se promijenio",
+      "parcel_delivered": "Paket je dostavljen",
+      "parcel_delivery_time_changed": "Očekivano vrijeme dostave paketa se promijenilo"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Osvježi"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Dostave"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Dolazni paketi",
+        "unit_of_measurement": "pošiljke"
+      },
+      "next_delivery": {
+        "name": "Sljedeća dostava"
+      },
+      "awaiting_pickup": {
+        "name": "Spremno za preuzimanje",
+        "unit_of_measurement": "pošiljke"
+      },
+      "delivered_parcels": {
+        "name": "Dostavljeni paketi",
+        "unit_of_measurement": "pošiljke"
+      },
+      "last_update": {
+        "name": "Zadnje uspješno ažuriranje"
+      },
+      "parcel": {
+        "name": "Paket {barcode}"
+      }
+    }
+  }
+}

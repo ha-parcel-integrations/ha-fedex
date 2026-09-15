@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Määritä FedEx",
+        "description": "Anna oma FedEx-kehittäjän API-avain. Lisää paketteja sen jälkeen integraation asetuksista tai palvelulla `fedex.track_parcel`.",
+        "data": {
+          "client_id": "FedExin API-avain",
+          "client_secret": "FedExin salainen avain"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx hylkäsi API-avaimen",
+        "description": "FedEx ei enää hyväksy tallennettua API-avainta — se on voitu vaihtaa tai peruuttaa. Anna uusi.",
+        "data": {
+          "client_id": "FedExin API-avain",
+          "client_secret": "FedExin salainen avain"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx hylkäsi tämän API-avaimen.",
+      "cannot_connect": "FedExiin ei saatu yhteyttä. Yritä uudelleen."
+    },
+    "abort": {
+      "already_configured": "FedEx on jo määritetty.",
+      "reauth_successful": "FedExin todennus uusittiin onnistuneesti."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FedEx-asetukset",
+        "menu_options": {
+          "parcels": "Paketit",
+          "settings": "Asetukset"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Paketit",
+            "data": {
+              "add": "Lisää paketti",
+              "remove": "Poista paketteja"
+            },
+            "data_description": {
+              "add": "Syötä Matkahuollon seurantakoodi aloittaaksesi paketin seurannan. Löydät sen lähetysvahvistuksesta tai noutokortista."
+            }
+          },
+          "delivered": {
+            "name": "Toimitetut paketit",
+            "data": {
+              "delivered_filter_type": "Suodata",
+              "delivered_filter_amount": "Määrä"
+            },
+            "data_description": {
+              "delivered_filter_type": "Näytä viimeisten X päivän aikana toimitetut paketit tai rajoita X viimeisimpään.",
+              "delivered_filter_amount": "Näytettävien päivien tai pakettien määrä."
+            }
+          },
+          "history": {
+            "name": "Pakettihistoria",
+            "data": {
+              "include_history": "Sisällytä tilahistoria"
+            },
+            "data_description": {
+              "include_history": "Lisää jokaiselle paketille historia-attribuutin, joka listaa jokaisen statuspäivityksen (aikaleima, status, alkuperäinen teksti). Oletuksena pois päältä."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Hallitse paketteja",
+        "data": {
+          "tracking_codes": "Seurantakoodit"
+        }
+      },
+      "settings": {
+        "title": "Asetukset",
+        "data": {
+          "delivered_filter_type": "Toimitetut paketit: suodata perusteella",
+          "delivered_filter_amount": "Toimitetut paketit: määrä",
+          "include_history": "Sisällytä tilahistoria"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Tämä ei näytä FedExn seurantakoodilta.",
+      "already_tracked": "Tätä pakettia seurataan jo."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Päivää",
+        "parcels": "Pakettien määrä"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Seuraa pakettia",
+      "description": "Aloita paketin seuranta sen FedEx-seurantakoodilla.",
+      "fields": {
+        "tracking_code": {
+          "name": "Seurantakoodi",
+          "description": "FedEx-seurantakoodi."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Lopeta paketin seuranta",
+      "description": "Lopeta paketin seuranta sen FedEx-seurantakoodilla.",
+      "fields": {
+        "tracking_code": {
+          "name": "Seurantakoodi",
+          "description": "FedEx-seurantakoodi, jonka seuranta lopetetaan."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Paketti rekisteröitiin",
+      "parcel_status_changed": "Paketin tila muuttui",
+      "parcel_delivered": "Paketti toimitettiin",
+      "parcel_delivery_time_changed": "Paketin arvioitu toimitusaika muuttui"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Päivitä"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Toimitukset"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Saapuvat paketit",
+        "unit_of_measurement": "pakettia"
+      },
+      "next_delivery": {
+        "name": "Seuraava toimitus"
+      },
+      "awaiting_pickup": {
+        "name": "Valmis noudettavaksi",
+        "unit_of_measurement": "pakettia"
+      },
+      "delivered_parcels": {
+        "name": "Toimitetut paketit",
+        "unit_of_measurement": "pakettia"
+      },
+      "last_update": {
+        "name": "Viimeisin onnistunut päivitys"
+      },
+      "parcel": {
+        "name": "Paketti {barcode}"
+      }
+    }
+  }
+}

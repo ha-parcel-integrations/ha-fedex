@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nustatyti FedEx",
+        "description": "Įveskite savo FedEx kūrėjo API raktą. Siuntas vėliau pridėkite integracijos parinktyse arba paslauga `fedex.track_parcel`.",
+        "data": {
+          "client_id": "FedEx API raktas",
+          "client_secret": "FedEx slaptasis raktas"
+        }
+      },
+      "reauth_confirm": {
+        "title": "FedEx atmetė API raktą",
+        "description": "FedEx nebepriima išsaugoto API rakto — jis galėjo būti pakeistas arba atšauktas. Įveskite naują.",
+        "data": {
+          "client_id": "FedEx API raktas",
+          "client_secret": "FedEx slaptasis raktas"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "FedEx atmetė šį API raktą.",
+      "cannot_connect": "Nepavyko susisiekti su FedEx. Bandykite dar kartą."
+    },
+    "abort": {
+      "already_configured": "FedEx jau sukonfigūruota.",
+      "reauth_successful": "FedEx pakartotinai autentifikuotas sėkmingai."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FedEx parinktys",
+        "menu_options": {
+          "parcels": "Siuntos",
+          "settings": "Nustatymai"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Siuntiniai",
+            "data": {
+              "add": "Pridėti siuntinį",
+              "remove": "Pašalinti siuntinius"
+            },
+            "data_description": {
+              "add": "Įveskite FedEx sekimo kodą, kad pradėtumėte sekti siuntinį. Jį rasite siuntimo patvirtinime arba pranešime apie nepristatytą siuntą."
+            }
+          },
+          "delivered": {
+            "name": "Pristatytos siuntos",
+            "data": {
+              "delivered_filter_type": "Filtruoti pagal",
+              "delivered_filter_amount": "Kiekis"
+            },
+            "data_description": {
+              "delivered_filter_type": "Rodyti pristatytas siuntas per pastarąsias X dienas arba apriboti iki X naujausių.",
+              "delivered_filter_amount": "Rodomų dienų arba siuntų skaičius."
+            }
+          },
+          "history": {
+            "name": "Siuntų istorija",
+            "data": {
+              "include_history": "Įtraukti būsenų istoriją"
+            },
+            "data_description": {
+              "include_history": "Prideda kiekvienai siuntai istorijos atributą, kuriame išvardijamas kiekvienas būsenos atnaujinimas (laiko žyma, būsena, originalus tekstas). Pagal numatytuosius nustatymus išjungta."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Siuntos",
+        "data": {
+          "tracking_codes": "Sekimo kodai"
+        }
+      },
+      "settings": {
+        "title": "Nustatymai",
+        "data": {
+          "delivered_filter_type": "Pristatytos siuntos: filtruoti pagal",
+          "delivered_filter_amount": "Pristatytos siuntos: kiekis",
+          "include_history": "Įtraukti būsenos istoriją"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Tai nepanašu į FedEx sekimo kodą.",
+      "already_tracked": "Šis siuntinys jau sekamas."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Dienos",
+        "parcels": "Siuntų skaičius"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Sekti siuntinį",
+      "description": "Pradeda sekti siuntinį pagal jo FedEx sekimo kodą.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sekimo kodas",
+          "description": "FedEx sekimo kodas."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Nebesekti siuntinio",
+      "description": "Sustabdo siuntinio sekimą pagal jo FedEx sekimo kodą.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sekimo kodas",
+          "description": "FedEx sekimo kodas, kurio sekimą reikia sustabdyti."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Siunta buvo užregistruota",
+      "parcel_status_changed": "Siuntos būsena pasikeitė",
+      "parcel_delivered": "Siunta buvo pristatyta",
+      "parcel_delivery_time_changed": "Numatomas siuntos pristatymo laikas pasikeitė"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Atnaujinti"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Pristatymai"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Gaunamos siuntos",
+        "unit_of_measurement": "siuntos"
+      },
+      "next_delivery": {
+        "name": "Kitas pristatymas"
+      },
+      "awaiting_pickup": {
+        "name": "Paruošta atsiimti",
+        "unit_of_measurement": "siuntos"
+      },
+      "delivered_parcels": {
+        "name": "Pristatytos siuntos",
+        "unit_of_measurement": "siuntos"
+      },
+      "last_update": {
+        "name": "Paskutinis sėkmingas atnaujinimas"
+      },
+      "parcel": {
+        "name": "Siunta {barcode}"
+      }
+    }
+  }
+}

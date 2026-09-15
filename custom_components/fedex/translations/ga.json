@@ -1,0 +1,165 @@
+{
+  "title": "FedEx",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Socraigh FedEx",
+        "description": "Cuir isteach d'eochair API forbróra FedEx féin. Cuir beartáin leis ina dhiaidh sin trí roghanna an chomhtháthaithe nó an tseirbhís `fedex.track_parcel`.",
+        "data": {
+          "client_id": "Eochair API FedEx",
+          "client_secret": "Eochair rúnda FedEx"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Dhiúltaigh FedEx don eochair API",
+        "description": "Ní ghlacann FedEx leis an eochair API atá sábháilte a thuilleadh — b'fhéidir gur athraíodh nó gur cúlghaireadh í. Cuir ceann nua isteach.",
+        "data": {
+          "client_id": "Eochair API FedEx",
+          "client_secret": "Eochair rúnda FedEx"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Dhiúltaigh FedEx don eochair API seo.",
+      "cannot_connect": "Níorbh fhéidir teagmháil a dhéanamh le FedEx. Bain triail eile as."
+    },
+    "abort": {
+      "already_configured": "Tá FedEx socraithe cheana féin.",
+      "reauth_successful": "D'éirigh le hathfhíordheimhniú FedEx."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Roghanna FedEx",
+        "menu_options": {
+          "parcels": "Beartáin",
+          "settings": "Socruithe"
+        },
+        "sections": {
+          "parcels": {
+            "name": "Beartáin",
+            "data": {
+              "add": "Cuir beartán leis",
+              "remove": "Bain beartáin"
+            },
+            "data_description": {
+              "add": "Cuir isteach cód rianaithe FedEx chun tosú á rianú. Gheobhaidh tú é ar dhearbhú an tseolta nó ar an gcárta seachadta."
+            }
+          },
+          "delivered": {
+            "name": "Pacáistí seachadta",
+            "data": {
+              "delivered_filter_type": "Scag de réir",
+              "delivered_filter_amount": "Méid"
+            },
+            "data_description": {
+              "delivered_filter_type": "Taispeáin pacáistí a seachadadh sna X lá is déanaí, nó teorannaigh do na X is déanaí.",
+              "delivered_filter_amount": "Líon na laethanta nó na bpacáistí le taispeáint."
+            }
+          },
+          "history": {
+            "name": "Stair an bheartáin",
+            "data": {
+              "include_history": "Cuir stair na stádas san áireamh"
+            },
+            "data_description": {
+              "include_history": "Cuireann sé aitreabúid staire le gach beartán ina liostaítear gach athrú stádais (stampa ama, stádas, buntéacs). Múchta de réir réamhshocraithe."
+            }
+          }
+        }
+      },
+      "parcels": {
+        "title": "Bainistigh beartáin",
+        "data": {
+          "tracking_codes": "Cóid rianaithe"
+        }
+      },
+      "settings": {
+        "title": "Socruithe",
+        "data": {
+          "delivered_filter_type": "Beartáin seachadta: scag de réir",
+          "delivered_filter_amount": "Beartáin seachadta: méid",
+          "include_history": "Cuir stair na stádas san áireamh"
+        }
+      }
+    },
+    "error": {
+      "invalid_tracking_code": "Ní cosúil gur cód rianaithe FedEx é sin.",
+      "already_tracked": "Tá an beartán sin á rianú cheana féin."
+    }
+  },
+  "selector": {
+    "delivered_filter_type": {
+      "options": {
+        "days": "Laethanta",
+        "parcels": "Líon na bpacáistí"
+      }
+    }
+  },
+  "services": {
+    "track_parcel": {
+      "name": "Rian pacáiste",
+      "description": "Tosaigh ag rianú beartáin lena chód rianaithe FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Cód rianaithe",
+          "description": "An cód rianaithe FedEx."
+        }
+      }
+    },
+    "untrack_parcel": {
+      "name": "Ná rian pacáiste a thuilleadh",
+      "description": "Stop ag rianú beartáin lena chód rianaithe FedEx.",
+      "fields": {
+        "tracking_code": {
+          "name": "Cód rianaithe",
+          "description": "An cód rianaithe FedEx nach bhfuil tú ag iarraidh a rianú a thuilleadh."
+        }
+      }
+    }
+  },
+  "device_automation": {
+    "trigger_type": {
+      "parcel_registered": "Cláraíodh pacáiste",
+      "parcel_status_changed": "D'athraigh stádas pacáiste",
+      "parcel_delivered": "Seachadadh pacáiste",
+      "parcel_delivery_time_changed": "D'athraigh am seachadta measta pacáiste"
+    }
+  },
+  "entity": {
+    "button": {
+      "refresh": {
+        "name": "Athnuaigh"
+      }
+    },
+    "calendar": {
+      "deliveries": {
+        "name": "Seachadtaí"
+      }
+    },
+    "sensor": {
+      "incoming_parcels": {
+        "name": "Pacáistí ag teacht isteach",
+        "unit_of_measurement": "pacáistí"
+      },
+      "next_delivery": {
+        "name": "An chéad seachadadh eile"
+      },
+      "awaiting_pickup": {
+        "name": "Ag fanacht le bailiú",
+        "unit_of_measurement": "beartán"
+      },
+      "delivered_parcels": {
+        "name": "Pacáistí seachadta",
+        "unit_of_measurement": "pacáistí"
+      },
+      "last_update": {
+        "name": "An nuashonrú rathúil is déanaí"
+      },
+      "parcel": {
+        "name": "Pacáiste {barcode}"
+      }
+    }
+  }
+}

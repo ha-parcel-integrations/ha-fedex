@@ -147,7 +147,7 @@
         "name": "Următoarea livrare"
       },
       "awaiting_pickup": {
-        "name": "Gata de ridicare",
+        "name": "În așteptarea ridicării",
         "unit_of_measurement": "colete"
       },
       "delivered_parcels": {

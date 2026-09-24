@@ -147,7 +147,7 @@
         "name": "Наступна доставка"
       },
       "awaiting_pickup": {
-        "name": "Очікує отримання",
+        "name": "Готово до отримання",
         "unit_of_measurement": "посилок"
       },
       "delivered_parcels": {

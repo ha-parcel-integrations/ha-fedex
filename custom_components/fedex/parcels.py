@@ -261,8 +261,11 @@ def _weight_kg(raw: dict) -> float | None:
     for weight in weights:
         if not isinstance(weight, dict):
             continue
+        raw_value = weight.get("value")
+        if raw_value is None:
+            continue
         try:
-            value = float(weight.get("value"))
+            value = float(raw_value)
         except (TypeError, ValueError):
             continue
         if weight.get("unit") == "KG":
@@ -282,8 +285,10 @@ def _dimensions_cm(raw: dict) -> dict[str, Any] | None:
         if not isinstance(dimension, dict):
             continue
         try:
-            values = tuple(
-                float(dimension[axis]) for axis in ("length", "width", "height")
+            values = (
+                float(dimension["length"]),
+                float(dimension["width"]),
+                float(dimension["height"]),
             )
         except (KeyError, TypeError, ValueError):
             continue

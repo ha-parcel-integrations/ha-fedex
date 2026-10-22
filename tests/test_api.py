@@ -5,11 +5,7 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from custom_components.fedex.api import (
-    FedExApiClient,
-    FedExApiError,
-    FedExAuthError,
-)
+from custom_components.fedex.api import FedExApiClient, FedExApiError, FedExAuthError
 from custom_components.fedex.const import OAUTH_URL
 
 

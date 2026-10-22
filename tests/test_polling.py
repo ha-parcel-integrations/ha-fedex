@@ -5,11 +5,11 @@ integration checks that ``_async_update_data`` actually wires them up (the
 full-stop condition, its resume, and the 429 backoff).
 """
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from unittest.mock import AsyncMock
 
-import pytest
 from homeassistant.helpers.update_coordinator import UpdateFailed
+import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.fedex.api import FedExApiError
@@ -33,8 +33,6 @@ from custom_components.fedex.coordinator import (
 )
 
 from .payloads import ACTIVE_CODE, active_sample
-
-UTC = timezone.utc
 
 
 def _out_for_delivery(planned_from: str | None) -> dict:

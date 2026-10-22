@@ -3,14 +3,11 @@
 from unittest.mock import AsyncMock, patch
 
 import aiohttp
-import pytest
 from homeassistant.config_entries import SOURCE_USER
+import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.fedex.api import (
-    FedExApiError,
-    FedExAuthError,
-)
+from custom_components.fedex.api import FedExApiError, FedExAuthError
 from custom_components.fedex.config_flow import (
     normalize_tracking_code,
     valid_tracking_code,
@@ -79,7 +76,7 @@ async def test_user_flow_creates_hub_with_a_valid_key(hass):
 
 
 @pytest.mark.parametrize(
-    "error,expected",
+    ("error", "expected"),
     [
         (FedExAuthError("HTTP 401"), "invalid_auth"),
         (FedExApiError("HTTP 500"), "cannot_connect"),

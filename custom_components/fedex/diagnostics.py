@@ -37,7 +37,6 @@ TO_REDACT = {
     "phoneNumber",
     "referenceNumber",
     "recipient",
-    "deliveryAddress",
     "address",
     "postalCode",
     "postal_code",

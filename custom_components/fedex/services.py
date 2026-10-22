@@ -7,10 +7,10 @@ can start tracking a parcel straight from a dashboard.
 
 from __future__ import annotations
 
-import voluptuous as vol
 from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers import config_validation as cv
+import voluptuous as vol
 
 from .config_flow import normalize_tracking_code, valid_tracking_code
 from .const import CONF_PARCELS, CONF_TRACKING_CODE, DOMAIN

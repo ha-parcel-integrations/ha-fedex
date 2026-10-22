@@ -71,7 +71,10 @@ def delivered_sample(code: str = DELIVERED_CODE) -> dict:
             {"type": "SHIP", "dateTime": "2026-04-27T00:00:00+00:00"},
         ],
         "packageDetails": {
-            "packagingDescription": {"type": "YOUR_PACKAGING", "description": "Package"},
+            "packagingDescription": {
+                "type": "YOUR_PACKAGING",
+                "description": "Package",
+            },
             "weightAndDimensions": {
                 "weight": [
                     {"value": "2.76", "unit": "LB"},
@@ -102,10 +105,11 @@ def delivered_sample(code: str = DELIVERED_CODE) -> dict:
             ),
         ],
         "estimatedDeliveryTimeWindow": {"window": {}},
-        "standardTransitTimeWindow": {
-            "window": {"ends": "2026-04-29T17:00:00-05:00"}
+        "standardTransitTimeWindow": {"window": {"ends": "2026-04-29T17:00:00-05:00"}},
+        "serviceDetail": {
+            "type": "GROUND_HOME_DELIVERY",
+            "description": "Home Delivery",
         },
-        "serviceDetail": {"type": "GROUND_HOME_DELIVERY", "description": "Home Delivery"},
     }
 
 

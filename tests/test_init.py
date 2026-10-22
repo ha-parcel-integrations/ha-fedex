@@ -6,10 +6,7 @@ from homeassistant.config_entries import ConfigEntryState
 from homeassistant.helpers import entity_registry as er
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.fedex.api import (
-    FedExApiError,
-    FedExAuthError,
-)
+from custom_components.fedex.api import FedExApiError, FedExAuthError
 from custom_components.fedex.const import (
     CONF_CLIENT_ID,
     CONF_CLIENT_SECRET,
@@ -18,8 +15,7 @@ from custom_components.fedex.const import (
     DOMAIN,
 )
 
-from .payloads import ACTIVE_CODE
-from .payloads import active_sample as _sample
+from .payloads import ACTIVE_CODE, active_sample as _sample
 
 OTHER_CODE = "EXAMPLE222222"
 ENTRY_DATA = {

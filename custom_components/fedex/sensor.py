@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import logging
 from datetime import datetime
+import logging
 from typing import Any
 
 from homeassistant.components.sensor import (
@@ -72,10 +72,10 @@ async def async_setup_entry(
             coordinator, entry, async_add_entities, current_barcodes
         ),
     ]
-    for parcel in coordinator.data or []:
-        entities.append(
-            FedExParcelSensor(coordinator, entry, parcel.get("barcode", ""))
-        )
+    entities.extend(
+        FedExParcelSensor(coordinator, entry, parcel.get("barcode", ""))
+        for parcel in coordinator.data or []
+    )
     entities.append(FedExNextDeliverySensor(coordinator, entry))
     entities.append(FedExAwaitingPickupSensor(coordinator, entry))
     entities.append(FedExDeliveredParcelsSensor(coordinator, entry))

@@ -1,6 +1,6 @@
 """Tests for FedEx sensor property logic."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from unittest.mock import MagicMock
 
 from custom_components.fedex.const import ParcelStatus
@@ -72,7 +72,7 @@ def test_next_delivery_picks_earliest():
         ]
     )
     sensor = FedExNextDeliverySensor(coordinator, _entry())
-    assert sensor.native_value == datetime(2026, 5, 1, 10, 0, tzinfo=timezone.utc)
+    assert sensor.native_value == datetime(2026, 5, 1, 10, 0, tzinfo=UTC)
     assert sensor.extra_state_attributes["barcode"] == "B"
 
 
@@ -116,7 +116,7 @@ def test_awaiting_pickup_sensor_lists_only_ready_parcels():
 
 def test_last_update_sensor():
     coordinator = _coordinator([])
-    moment = datetime(2026, 6, 30, 12, 0, tzinfo=timezone.utc)
+    moment = datetime(2026, 6, 30, 12, 0, tzinfo=UTC)
     coordinator.last_success_time = moment
     sensor = FedExLastUpdateSensor(coordinator, _entry())
     assert sensor.native_value == moment

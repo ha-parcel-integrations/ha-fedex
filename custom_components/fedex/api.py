@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 import aiohttp
@@ -50,7 +50,7 @@ class FedExApiClient:
             self._access_token
             and self._access_token != stale
             and self._expires_at
-            and self._expires_at > datetime.now(timezone.utc)
+            and self._expires_at > datetime.now(UTC)
         ):
             return self._access_token
         return None
@@ -93,7 +93,7 @@ class FedExApiClient:
         ):
             raise FedExApiError("invalid OAuth response")
         self._access_token = token
-        self._expires_at = datetime.now(timezone.utc) + timedelta(
+        self._expires_at = datetime.now(UTC) + timedelta(
             seconds=max(0, expires_in - 60)
         )
         return token

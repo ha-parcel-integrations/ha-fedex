@@ -1,6 +1,7 @@
 {
   "domain": "fedex",
   "name": "FedEx",
+  "categories": ["productivity_information"],
   "codeowners": [
     "@peter-mdf"
   ],

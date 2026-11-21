@@ -1,12 +1,13 @@
 """Tests for FedEx sensor property logic."""
 
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from unittest.mock import MagicMock
 
 from custom_components.fedex.const import ParcelStatus
 from custom_components.fedex.sensor import (
     FedExAwaitingPickupSensor,
     FedExDeliveredParcelsSensor,
+    FedExEnRouteToPickupPointSensor,
     FedExIncomingParcelsSensor,
     FedExLastUpdateSensor,
     FedExNextDeliverySensor,
@@ -67,12 +68,12 @@ def test_parcel_sensor_missing_barcode():
 def test_next_delivery_picks_earliest():
     coordinator = _coordinator(
         [
-            _parcel("A", planned_from="2026-05-02T10:00:00Z"),
-            _parcel("B", planned_from="2026-05-01T10:00:00Z"),
+            _parcel("A", planned_from="2099-05-02T10:00:00Z"),
+            _parcel("B", planned_from="2099-05-01T10:00:00Z"),
         ]
     )
     sensor = FedExNextDeliverySensor(coordinator, _entry())
-    assert sensor.native_value == datetime(2026, 5, 1, 10, 0, tzinfo=UTC)
+    assert sensor.native_value == datetime(2099, 5, 1, 10, 0, tzinfo=UTC)
     assert sensor.extra_state_attributes["barcode"] == "B"
 
 
@@ -86,7 +87,7 @@ def test_next_delivery_skips_unparseable_moment():
     coordinator = _coordinator(
         [
             _parcel("A", planned_from="not-a-date"),
-            _parcel("B", planned_from="2026-05-01T10:00:00Z"),
+            _parcel("B", planned_from="2099-05-01T10:00:00Z"),
         ]
     )
     sensor = FedExNextDeliverySensor(coordinator, _entry())
@@ -114,9 +115,46 @@ def test_awaiting_pickup_sensor_lists_only_ready_parcels():
     assert sensor.extra_state_attributes["parcels"][0]["barcode"] == "P"
 
 
+def test_en_route_to_pickup_point_counts_only_parcels_not_yet_there():
+    coordinator = _coordinator(
+        [
+            _parcel("E", status=ParcelStatus.IN_TRANSIT, pickup=True),
+            _parcel("A", status=ParcelStatus.AT_PICKUP_POINT, pickup=True),
+            _parcel("R", status=ParcelStatus.RETURNING, pickup=True),
+            _parcel("H", status=ParcelStatus.IN_TRANSIT),
+        ],
+        delivered=[_parcel("D", status=ParcelStatus.DELIVERED, pickup=True)],
+    )
+    sensor = FedExEnRouteToPickupPointSensor(coordinator, _entry())
+    assert sensor.native_value == 1
+    assert [p["barcode"] for p in sensor.extra_state_attributes["parcels"]] == ["E"]
+
+
 def test_last_update_sensor():
     coordinator = _coordinator([])
     moment = datetime(2026, 6, 30, 12, 0, tzinfo=UTC)
     coordinator.last_success_time = moment
     sensor = FedExLastUpdateSensor(coordinator, _entry())
     assert sensor.native_value == moment
+
+
+def _in(**delta) -> str:
+    return (datetime.now(UTC) + timedelta(**delta)).isoformat()
+
+
+def test_next_delivery_skips_a_window_that_has_ended():
+    stale = _parcel("A", planned_from=_in(days=-3))
+    stale["planned_to"] = _in(days=-2)
+    moment_only = _parcel("B", planned_from=_in(hours=-2))
+    sensor = FedExNextDeliverySensor(
+        _coordinator([stale, moment_only, _parcel("C", planned_from=_in(days=2))]),
+        _entry(),
+    )
+    assert sensor.extra_state_attributes["barcode"] == "C"
+
+
+def test_next_delivery_keeps_a_window_that_is_still_running():
+    running = _parcel("A", planned_from=_in(hours=-1))
+    running["planned_to"] = _in(hours=2)
+    sensor = FedExNextDeliverySensor(_coordinator([running]), _entry())
+    assert sensor.extra_state_attributes["barcode"] == "A"

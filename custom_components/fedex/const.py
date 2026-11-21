@@ -51,9 +51,10 @@ KNOWN_CAPABILITIES = frozenset(
 #   "pickup_point"       parcel["pickup_point"] is ever non-null (beyond the "pickup" bool)
 #   "url"                parcel["url"] is ever non-null
 #   "history"            the include_history option is implemented and does something
-CAPABILITIES = frozenset(
-    {"weight", "dimensions", "delivery_window", "pickup_point", "url", "history"}
-)
+CAPABILITIES = frozenset({"weight", "dimensions", "delivery_window", "url", "history"})
+
+# No payload has shown the pickup point's name or a pre-scan pickup flag yet.
+PENDING_CAPABILITIES: frozenset[str] = frozenset({"pickup_point"})
 
 # If this carrier ever grows a second backend with a genuinely different
 # payload shape (a country-specific API, not just a config option), replace

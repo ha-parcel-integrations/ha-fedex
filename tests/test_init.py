@@ -51,6 +51,10 @@ async def test_setup_and_unload(hass):
     assert incoming is not None
     assert incoming.state == "1"
 
+    # Both pickup sensors are registered and survive the stale-entity sweep.
+    assert hass.states.get("sensor.fedex_en_route_to_pickup_point") is not None
+    assert hass.states.get("sensor.fedex_awaiting_pickup") is not None
+
     # Services registered on setup...
     assert hass.services.has_service(DOMAIN, "track_parcel")
 

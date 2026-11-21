@@ -257,8 +257,8 @@ def test_normalize_delivered_parcel():
     parcel = normalize_parcel(delivered_sample())
     assert parcel["carrier"] == "FedEx"
     assert parcel["barcode"] == "EXAMPLE123456"
-    assert parcel["sender"] == "EXAMPLE CITY, CA, US"
-    assert parcel["receiver"] == "EXAMPLE CITY, CA, US"
+    assert parcel["sender"] is None
+    assert parcel["receiver"] is None
     assert parcel["status"] == ParcelStatus.DELIVERED
     assert parcel["raw_status"] == "Delivered"
     assert parcel["delivered"] is True
@@ -296,20 +296,20 @@ def test_normalize_active_parcel_has_window():
     assert parcel["planned_to"] == to_iso_timestamp("2026-04-29T15:00:00-05:00")
 
 
-def test_normalize_collapses_point_estimate_to_no_window_end():
+def test_normalize_stretches_a_point_estimate_to_the_end_of_its_day():
     raw = active_sample()
     window = raw["estimatedDeliveryTimeWindow"]["window"]
     window["ends"] = window["begins"]
     parcel = normalize_parcel(raw)
     assert parcel["planned_from"] == to_iso_timestamp("2026-04-29T13:00:00-05:00")
-    assert parcel["planned_to"] is None
+    assert parcel["planned_to"] == "2026-04-29T23:59:59-05:00"
 
 
 def test_normalize_pickup_parcel():
     parcel = normalize_parcel(pickup_sample())
     assert parcel["status"] == ParcelStatus.AT_PICKUP_POINT
     assert parcel["pickup"] is True
-    assert parcel["pickup_point"] == "EXAMPLE CITY, CA, US"
+    assert parcel["pickup_point"] is None
 
 
 def test_specific_latest_status_code_overrides_derived_pickup_bucket():
@@ -364,8 +364,8 @@ def test_normalize_official_fields_for_label_created_package():
         ],
     }
     parcel = normalize_parcel(raw, include_history=True)
-    assert parcel["sender"] == "Origin, CA, US"
-    assert parcel["receiver"] == "Destination, OR, US"
+    assert parcel["sender"] is None
+    assert parcel["receiver"] is None
     assert parcel["weight"] == 2.0
     assert parcel["planned_from"] == "2026-07-28T09:00:00-07:00"
     assert parcel["planned_to"] == "2026-07-28T17:00:00-07:00"

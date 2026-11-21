@@ -35,10 +35,22 @@ you act in one of these areas:
   summary+diagnostic sensors. Add a new non-parcel sensor's unique_id to the set.
 - **Per-parcel sensors are removed by the summary sensor** via
   `entity_registry.async_remove` (self-removal races and leaves ghosts).
-- FedEx's real `HP` scan event reaches `ParcelStatus.AT_PICKUP_POINT`; the
-  incoming `awaiting_pickup` sensor is therefore required. Use the generic
+- FedEx's real `HP` scan event reaches `ParcelStatus.AT_PICKUP_POINT`;
+  `sensor.py` ships both `awaiting_pickup` and `en_route_to_pickup_point`
+  (active `pickup` parcels not yet at the point, excluding `returning`).
+  **Pending:** no payload has shown a structured pickup-destination flag
+  before the `HP` scan, so `pickup` only turns true at that scan and
+  `en_route_to_pickup_point` reads 0 until such a flag is seen. Use the generic
   term "pickup point"; no location is exposed until a privacy-safe field is
-  confirmed in a production payload.
+  confirmed in a production payload, so `pickup_point`, `sender` and `receiver`
+  stay `None` (the scan location is a city, not a name).
+- **Parcel contract:** `parcels.py` carries the shared helpers
+  (`planned_window`, `planned_for_status`, `is_pickup`). `planned_*` are emptied
+  at `at_pickup_point`, `returning` and `delivered`, and a single moment runs to
+  23:59:59 in its own offset. `pickup` follows the `HP` status or any scan that
+  reached it, so it stays true once collected. `next_delivery` skips a parcel
+  whose window has ended; the calendar shows a whole-day window as an all-day
+  event.
 
 ## Carrier-specific notes
 

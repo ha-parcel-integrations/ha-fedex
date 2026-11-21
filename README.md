@@ -114,6 +114,7 @@ Standard HA removal applies: **Settings → Devices & Services → FedEx → ⋮
 | `sensor.fedex_incoming_parcels` | Number of active tracked parcels, full list under the `parcels` attribute |
 | `sensor.fedex_parcel_<code>` | One per tracked parcel; state is the canonical status, attributes carry the full normalised parcel |
 | `sensor.fedex_next_delivery` | Earliest expected delivery moment across all active parcels |
+| `sensor.fedex_en_route_to_pickup_point` | Number of parcels heading to a pickup point that have not arrived yet |
 | `sensor.fedex_awaiting_pickup` | Number of parcels ready for collection at a pickup point |
 | `sensor.fedex_delivered_parcels` | Recently delivered parcels (see the retention option) |
 | `calendar.fedex_deliveries` | Read-only calendar of expected deliveries, no extra API calls |

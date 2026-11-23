@@ -105,6 +105,10 @@
         "tracking_code": {
           "name": "Izsekošanas kods",
           "description": "FedEx izsekošanas kods."
+        },
+        "contents": {
+          "name": "Saturs",
+          "description": "Kas ir sūtījumā, saviem vārdiem. Atkārtota izsaukšana sekotam sūtījumam saturu aizstāj; tukšs teksts to izdzēš."
         }
       }
     },
@@ -115,6 +119,20 @@
         "tracking_code": {
           "name": "Izsekošanas kods",
           "description": "FedEx izsekošanas kods, kuram jāpārtrauc izsekošana."
+        }
+      }
+    },
+    "update_contents": {
+      "name": "Atjaunināt sūtījuma saturu",
+      "description": "Saviem vārdiem norādiet, kas ir sūtījumā ar šo izsekošanas kodu. Tukšs teksts saturu izdzēš.",
+      "fields": {
+        "tracking_code": {
+          "name": "Izsekošanas kods",
+          "description": "FedEx izsekošanas kods."
+        },
+        "contents": {
+          "name": "Saturs",
+          "description": "Kas ir sūtījumā, saviem vārdiem. Tukšs teksts to izdzēš."
         }
       }
     }

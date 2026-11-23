@@ -20,6 +20,7 @@ CANONICAL_KEYS = [
     "barcode",
     "sender",
     "receiver",
+    "contents",
     "status",
     "raw_status",
     "delivered",
@@ -117,6 +118,7 @@ def test_pickup_is_a_bool_and_the_point_needs_it(parcel):
 def test_names_and_places_are_not_published_as_parties(parcel):
     assert parcel["sender"] is None
     assert parcel["receiver"] is None
+    assert parcel["contents"] is None
     assert parcel["pickup_point"] is None
 
 

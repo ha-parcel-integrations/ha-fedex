@@ -105,6 +105,10 @@
         "tracking_code": {
           "name": "Kode resi",
           "description": "Kode resi FedEx."
+        },
+        "contents": {
+          "name": "Isi",
+          "description": "Isi paket, dengan kata-katamu sendiri. Memanggil ulang untuk paket yang dilacak akan menggantikan isinya; teks kosong menghapusnya."
         }
       }
     },
@@ -115,6 +119,20 @@
         "tracking_code": {
           "name": "Kode resi",
           "description": "Kode resi FedEx yang akan berhenti dilacak."
+        }
+      }
+    },
+    "update_contents": {
+      "name": "Perbarui isi paket",
+      "description": "Atur isi paket untuk sebuah kode pelacakan, dengan kata-katamu sendiri. Teks kosong menghapus isinya.",
+      "fields": {
+        "tracking_code": {
+          "name": "Kode resi",
+          "description": "Kode resi FedEx."
+        },
+        "contents": {
+          "name": "Isi",
+          "description": "Isi paket, dengan kata-katamu sendiri. Teks kosong menghapusnya."
         }
       }
     }

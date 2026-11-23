@@ -105,6 +105,10 @@
         "tracking_code": {
           "name": "Cód rianaithe",
           "description": "An cód rianaithe FedEx."
+        },
+        "contents": {
+          "name": "Ábhar",
+          "description": "Cad atá sa phacáiste, i d'fhocail féin. Má ghlaonn tú arís é do phacáiste atá á rianú, cuirtear ábhar nua in ionad an ábhair; glanann téacs folamh é."
         }
       }
     },
@@ -115,6 +119,20 @@
         "tracking_code": {
           "name": "Cód rianaithe",
           "description": "An cód rianaithe FedEx nach bhfuil tú ag iarraidh a rianú a thuilleadh."
+        }
+      }
+    },
+    "update_contents": {
+      "name": "Nuashonraigh ábhar an phacáiste",
+      "description": "Socraigh, i d'fhocail féin, cad atá i bpacáiste le cód rianaithe. Glanann téacs folamh an t-ábhar.",
+      "fields": {
+        "tracking_code": {
+          "name": "Cód rianaithe",
+          "description": "An cód rianaithe FedEx."
+        },
+        "contents": {
+          "name": "Ábhar",
+          "description": "Cad atá sa phacáiste, i d'fhocail féin. Glanann téacs folamh é."
         }
       }
     }

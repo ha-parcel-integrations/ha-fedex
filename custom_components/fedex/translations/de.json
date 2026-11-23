@@ -105,6 +105,10 @@
         "tracking_code": {
           "name": "Sendungsnummer",
           "description": "Der FedEx-Sendungscode."
+        },
+        "contents": {
+          "name": "Inhalt",
+          "description": "Was im Paket ist, in deinen eigenen Worten. Ein erneuter Aufruf für ein verfolgtes Paket ersetzt den Inhalt; ein leerer Text löscht ihn."
         }
       }
     },
@@ -115,6 +119,20 @@
         "tracking_code": {
           "name": "Sendungsnummer",
           "description": "Der FedEx-Sendungscode, dessen Verfolgung beendet werden soll."
+        }
+      }
+    },
+    "update_contents": {
+      "name": "Paketinhalt aktualisieren",
+      "description": "Lege für eine Sendungsnummer fest, was im Paket ist, in deinen eigenen Worten. Ein leerer Text löscht den Inhalt.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sendungsnummer",
+          "description": "Der FedEx-Sendungscode."
+        },
+        "contents": {
+          "name": "Inhalt",
+          "description": "Was im Paket ist, in deinen eigenen Worten. Ein leerer Text löscht ihn."
         }
       }
     }

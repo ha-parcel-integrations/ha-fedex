@@ -24,6 +24,7 @@ TO_REDACT = {
     "barcode",
     "sender",
     "receiver",
+    "contents",
     "url",
     # carrier payload fields
     "trackingNumber",

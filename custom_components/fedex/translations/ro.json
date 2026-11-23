@@ -105,6 +105,10 @@
         "tracking_code": {
           "name": "Cod de urmărire",
           "description": "Codul de urmărire FedEx."
+        },
+        "contents": {
+          "name": "Conținut",
+          "description": "Ce se află în colet, cu cuvintele tale. Apelarea din nou pentru un colet urmărit înlocuiește conținutul; un text gol îl șterge."
         }
       }
     },
@@ -115,6 +119,20 @@
         "tracking_code": {
           "name": "Cod de urmărire",
           "description": "Codul de urmărire FedEx care nu mai trebuie urmărit."
+        }
+      }
+    },
+    "update_contents": {
+      "name": "Actualizează conținutul coletului",
+      "description": "Setează, cu cuvintele tale, ce se află într-un colet, pentru un cod de urmărire. Un text gol șterge conținutul.",
+      "fields": {
+        "tracking_code": {
+          "name": "Cod de urmărire",
+          "description": "Codul de urmărire FedEx."
+        },
+        "contents": {
+          "name": "Conținut",
+          "description": "Ce se află în colet, cu cuvintele tale. Un text gol îl șterge."
         }
       }
     }

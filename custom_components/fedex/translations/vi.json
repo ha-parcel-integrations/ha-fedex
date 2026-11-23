@@ -105,6 +105,10 @@
         "tracking_code": {
           "name": "Mã vận đơn",
           "description": "Mã vận đơn FedEx."
+        },
+        "contents": {
+          "name": "Nội dung",
+          "description": "Những gì có trong bưu kiện, bằng lời của bạn. Gọi lại cho một bưu kiện đang theo dõi sẽ thay thế nội dung; văn bản trống sẽ xóa nội dung."
         }
       }
     },
@@ -115,6 +119,20 @@
         "tracking_code": {
           "name": "Mã vận đơn",
           "description": "Mã vận đơn FedEx cần ngừng theo dõi."
+        }
+      }
+    },
+    "update_contents": {
+      "name": "Cập nhật nội dung bưu kiện",
+      "description": "Đặt nội dung của một bưu kiện theo mã theo dõi, bằng lời của bạn. Văn bản trống sẽ xóa nội dung.",
+      "fields": {
+        "tracking_code": {
+          "name": "Mã vận đơn",
+          "description": "Mã vận đơn FedEx."
+        },
+        "contents": {
+          "name": "Nội dung",
+          "description": "Những gì có trong bưu kiện, bằng lời của bạn. Văn bản trống sẽ xóa nội dung."
         }
       }
     }

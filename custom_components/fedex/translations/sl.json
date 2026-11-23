@@ -105,6 +105,10 @@
         "tracking_code": {
           "name": "Sledilna koda",
           "description": "Številka za sledenje FedEx."
+        },
+        "contents": {
+          "name": "Vsebina",
+          "description": "Kaj je v paketu, z lastnimi besedami. Ponoven klic za spremljan paket vsebino zamenja; prazno besedilo jo izbriše."
         }
       }
     },
@@ -115,6 +119,20 @@
         "tracking_code": {
           "name": "Sledilna koda",
           "description": "Številka za sledenje FedEx, ki ji ne želite več slediti."
+        }
+      }
+    },
+    "update_contents": {
+      "name": "Posodobi vsebino paketa",
+      "description": "Z lastnimi besedami nastavite, kaj je v paketu s to sledilno kodo. Prazno besedilo vsebino izbriše.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sledilna koda",
+          "description": "Številka za sledenje FedEx."
+        },
+        "contents": {
+          "name": "Vsebina",
+          "description": "Kaj je v paketu, z lastnimi besedami. Prazno besedilo jo izbriše."
         }
       }
     }

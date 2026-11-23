@@ -11,6 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import FedExApiClient
 from .const import CONF_CLIENT_ID, CONF_CLIENT_SECRET, PLATFORMS
+from .contents import ContentsStore
 from .coordinator import FedExCoordinator
 from .services import async_setup_services, async_unload_services
 
@@ -43,6 +44,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: FedExConfigEntry) -> boo
         async_get_clientsession(hass),
     )
     coordinator = FedExCoordinator(hass, client, entry)
+
+    await coordinator.contents_store.async_load()
 
     # Fetch initial data here, before forwarding to platforms. Raising
     # ConfigEntryNotReady from a forwarded platform is too late for HA to catch
@@ -81,3 +84,8 @@ async def async_unload_entry(hass: HomeAssistant, entry: FedExConfigEntry) -> bo
     # always go when the entry unloads.
     async_unload_services(hass)
     return True
+
+
+async def async_remove_entry(hass: HomeAssistant, entry: FedExConfigEntry) -> None:
+    """Delete the contents the user set for the removed entry."""
+    await ContentsStore(hass, entry.entry_id).async_remove()

@@ -105,6 +105,10 @@
         "tracking_code": {
           "name": "Sekimo kodas",
           "description": "FedEx sekimo kodas."
+        },
+        "contents": {
+          "name": "Turinys",
+          "description": "Kas yra siuntoje, savais žodžiais. Pakartotinai iškvietus sekamai siuntai, turinys pakeičiamas; tuščias tekstas jį ištrina."
         }
       }
     },
@@ -115,6 +119,20 @@
         "tracking_code": {
           "name": "Sekimo kodas",
           "description": "FedEx sekimo kodas, kurio sekimą reikia sustabdyti."
+        }
+      }
+    },
+    "update_contents": {
+      "name": "Atnaujinti siuntos turinį",
+      "description": "Savais žodžiais nurodykite, kas yra siuntoje su šiuo sekimo kodu. Tuščias tekstas turinį ištrina.",
+      "fields": {
+        "tracking_code": {
+          "name": "Sekimo kodas",
+          "description": "FedEx sekimo kodas."
+        },
+        "contents": {
+          "name": "Turinys",
+          "description": "Kas yra siuntoje, savais žodžiais. Tuščias tekstas jį ištrina."
         }
       }
     }

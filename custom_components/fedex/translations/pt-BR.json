@@ -105,6 +105,10 @@
         "tracking_code": {
           "name": "Código de rastreio",
           "description": "O código de rastreio do FedEx."
+        },
+        "contents": {
+          "name": "Conteúdo",
+          "description": "O que há no pacote, com suas próprias palavras. Chamar novamente para um pacote acompanhado substitui o conteúdo; um texto vazio o apaga."
         }
       }
     },
@@ -115,6 +119,20 @@
         "tracking_code": {
           "name": "Código de rastreio",
           "description": "O código de rastreio do FedEx para parar de rastrear."
+        }
+      }
+    },
+    "update_contents": {
+      "name": "Atualizar o conteúdo do pacote",
+      "description": "Defina o que há em um pacote, com suas próprias palavras, para um código de rastreamento. Um texto vazio apaga o conteúdo.",
+      "fields": {
+        "tracking_code": {
+          "name": "Código de rastreio",
+          "description": "O código de rastreio do FedEx."
+        },
+        "contents": {
+          "name": "Conteúdo",
+          "description": "O que há no pacote, com suas próprias palavras. Um texto vazio o apaga."
         }
       }
     }
